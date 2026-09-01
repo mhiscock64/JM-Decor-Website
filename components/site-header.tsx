@@ -7,6 +7,7 @@ import { Menu } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
+import { BrandLogo } from "@/components/brand-logo";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -37,12 +38,9 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
 
   return (
     <header className="border-b border-ink/10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <Link
-          href="/"
-          className="font-body text-base font-medium uppercase tracking-[0.24em] text-ink"
-        >
-          {copy.brand}
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 sm:py-4">
+        <Link href="/" aria-label={copy.brand} className="shrink-0">
+          <BrandLogo priority />
         </Link>
         <nav className="hidden items-center gap-9 font-body text-[13px] font-medium tracking-wide text-ink/70 sm:flex">
           {links.map((link) => (
@@ -113,10 +111,8 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
             aria-hidden="true"
           />
           <div className="fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] bg-ivory shadow-2xl sm:hidden">
-            <div className="border-b border-ink/10 px-6 py-5">
-              <p className="font-body text-sm font-medium uppercase tracking-[0.24em] text-ink">
-                {copy.brand}
-              </p>
+            <div className="border-b border-ink/10 px-6 py-4">
+              <BrandLogo className="h-16" />
             </div>
             <nav className="flex flex-col gap-1 px-4 py-4 font-body text-[15px] font-medium tracking-wide text-ink/80">
               {links.map((link) => (
