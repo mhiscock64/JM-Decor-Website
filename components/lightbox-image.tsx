@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export function LightboxImage({
   src,
@@ -32,8 +31,13 @@ export function LightboxImage({
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previous;
+    };
   }, [open]);
 
   return (
@@ -55,13 +59,14 @@ export function LightboxImage({
           className={className}
         />
       </button>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent
-          showCloseButton={false}
+      {open ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={alt}
           onClick={() => setOpen(false)}
-          className="fixed inset-0 top-0 left-0 flex h-dvh w-screen max-w-none translate-x-0 translate-y-0 items-center justify-center rounded-none border-0 bg-ink/80 p-6 shadow-none ring-0 backdrop-blur-sm sm:max-w-none"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
         >
-          <DialogTitle className="sr-only">{alt}</DialogTitle>
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -86,8 +91,8 @@ export function LightboxImage({
               </figcaption>
             ) : null}
           </figure>
-        </DialogContent>
-      </Dialog>
+        </div>
+      ) : null}
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -8,13 +8,6 @@ import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 
 const links = [
   { href: "/gallery", key: "gallery" as const },
@@ -27,6 +20,20 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
   const { count } = useCart();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   return (
     <header className="border-b border-ink/10">
@@ -53,43 +60,16 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
           ))}
         </nav>
         <div className="flex items-center gap-5">
-          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-            <SheetTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  className="text-ink hover:bg-cream hover:text-ink sm:hidden"
-                  aria-label={t(copy.nav.menu, locale)}
-                />
-              }
-            >
-              <Menu className="size-4" />
-            </SheetTrigger>
-            <SheetContent
-              side="left"
-              showCloseButton={false}
-              className="w-72 max-w-[80vw] gap-0 bg-ivory p-0"
-            >
-              <SheetHeader className="border-b border-ink/10 px-6 py-5">
-                <SheetTitle className="font-body text-sm font-medium uppercase tracking-[0.24em] text-ink">
-                  {copy.brand}
-                </SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-1 px-4 py-4 font-body text-[15px] font-medium tracking-wide text-ink/80">
-                {links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-md px-2 py-2.5 hover:bg-cream hover:text-ink"
-                  >
-                    {t(copy.nav[link.key], locale)}
-                  </Link>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="text-ink hover:bg-cream hover:text-ink sm:hidden"
+            aria-label={t(copy.nav.menu, locale)}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
+          >
+            <Menu className="size-4" />
+          </Button>
           <button
             type="button"
             onClick={toggleLocale}
@@ -125,6 +105,34 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
           </button>
         </div>
       </div>
+      {menuOpen ? (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-ink/30 sm:hidden"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] bg-ivory shadow-2xl sm:hidden">
+            <div className="border-b border-ink/10 px-6 py-5">
+              <p className="font-body text-sm font-medium uppercase tracking-[0.24em] text-ink">
+                {copy.brand}
+              </p>
+            </div>
+            <nav className="flex flex-col gap-1 px-4 py-4 font-body text-[15px] font-medium tracking-wide text-ink/80">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-md px-2 py-2.5 hover:bg-cream hover:text-ink"
+                >
+                  {t(copy.nav[link.key], locale)}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </>
+      ) : null}
     </header>
   );
 }
