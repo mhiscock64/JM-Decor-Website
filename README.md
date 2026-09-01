@@ -1,6 +1,6 @@
-# Atelier Lumière
+# JM Decor
 
-A recreation of the [Atelier Lumière](https://montreal-wedding-dream.lovable.app/) wedding décor site: a bilingual Montréal studio for arches, candlelight, drapery, and rental pieces.
+A recreation of the [Montréal wedding décor site](https://montreal-wedding-dream.lovable.app/): a bilingual studio for arches, candlelight, drapery, and rental pieces.
 
 Browse past weddings, add catalogue items to a quote cart, then send a request with venue details. No payment is collected.
 

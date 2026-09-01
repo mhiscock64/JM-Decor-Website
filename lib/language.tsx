@@ -10,7 +10,7 @@ import {
 } from "react";
 import type { Locale } from "@/lib/types";
 
-const STORAGE_KEY = "lumiere-lang";
+const STORAGE_KEY = "jm-decor-lang";
 
 type LanguageContextValue = {
   locale: Locale;

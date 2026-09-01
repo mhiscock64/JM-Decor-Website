@@ -2,7 +2,7 @@ import { createHmac, randomUUID, timingSafeEqual } from "crypto";
 import type { Locale } from "@/lib/types";
 
 function secret() {
-  return process.env.CAPTCHA_SECRET ?? "atelier-lumiere-local-secret";
+  return process.env.CAPTCHA_SECRET ?? "jm-decor-local-secret";
 }
 
 export function issueCaptcha(locale: Locale) {

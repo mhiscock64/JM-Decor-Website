@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/types";
 
 export const copy = {
-  brand: "Atelier Lumière",
+  brand: "JM Decor",
   email: "bonjour@jmdecor.ca",
   city: { en: "Montréal, Quebec", fr: "Montréal, Québec" },
   nav: {
@@ -25,8 +25,8 @@ export const copy = {
     glimpse: { en: "A glimpse of recent weddings", fr: "Un aperçu de mariages récents" },
     fullGallery: { en: "See the full gallery →", fr: "Voir toute la galerie →" },
     galleryAlt: {
-      en: "Wedding décor by Atelier Lumière in Montréal",
-      fr: "Décor de mariage par Atelier Lumière à Montréal",
+      en: "Wedding décor by JM Decor in Montréal",
+      fr: "Décor de mariage par JM Decor à Montréal",
     },
     tell: { en: "Tell us about your day", fr: "Parlez-nous de votre journée" },
     ctaLede: {

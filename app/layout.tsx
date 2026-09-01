@@ -18,13 +18,13 @@ const body = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Atelier Lumière · Wedding Décor in Montréal",
-    template: "%s · Atelier Lumière",
+    default: "JM Decor · Wedding Décor in Montréal",
+    template: "%s · JM Decor",
   },
   description:
     "Arches, candlelight and drapery for Montréal weddings. Rent a full look or purchase the pieces you keep. Request a free quote.",
   openGraph: {
-    title: "Atelier Lumière · Wedding Décor in Montréal",
+    title: "JM Decor · Wedding Décor in Montréal",
     description:
       "Arches, candlelight and drapery for Montréal weddings. Rent or purchase. Request a free quote.",
     type: "website",

@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     locale: body.locale === "fr" ? "fr" : "en",
   };
 
-  console.info("[atelier-lumiere] quote request", quote);
+  console.info("[jm-decor] quote request", quote);
 
   return NextResponse.json({ ok: true });
 }
