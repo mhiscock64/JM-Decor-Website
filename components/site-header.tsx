@@ -1,0 +1,130 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu } from "lucide-react";
+import { useCart } from "@/lib/cart";
+import { copy, t } from "@/lib/i18n";
+import { useLanguage } from "@/lib/language";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+const links = [
+  { href: "/gallery", key: "gallery" as const },
+  { href: "/shop", key: "shop" as const },
+  { href: "/quote", key: "quote" as const },
+];
+
+export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
+  const { locale, toggleLocale } = useLanguage();
+  const { count } = useCart();
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header className="border-b border-ink/10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <Link
+          href="/"
+          className="font-body text-base font-medium uppercase tracking-[0.24em] text-ink"
+        >
+          {copy.brand}
+        </Link>
+        <nav className="hidden items-center gap-9 font-body text-[13px] font-medium tracking-wide text-ink/70 sm:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={
+                pathname === link.href
+                  ? "text-ink"
+                  : "transition-colors hover:text-sage"
+              }
+            >
+              {t(copy.nav[link.key], locale)}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-5">
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+            <SheetTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  className="text-ink hover:bg-cream hover:text-ink sm:hidden"
+                  aria-label={t(copy.nav.menu, locale)}
+                />
+              }
+            >
+              <Menu className="size-4" />
+            </SheetTrigger>
+            <SheetContent
+              side="left"
+              showCloseButton={false}
+              className="w-72 max-w-[80vw] gap-0 bg-ivory p-0"
+            >
+              <SheetHeader className="border-b border-ink/10 px-6 py-5">
+                <SheetTitle className="font-body text-sm font-medium uppercase tracking-[0.24em] text-ink">
+                  {copy.brand}
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-1 px-4 py-4 font-body text-[15px] font-medium tracking-wide text-ink/80">
+                {links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-md px-2 py-2.5 hover:bg-cream hover:text-ink"
+                  >
+                    {t(copy.nav[link.key], locale)}
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+          <button
+            type="button"
+            onClick={toggleLocale}
+            className="font-body text-[13px] font-medium tracking-wide text-ink/70"
+            aria-label={t(copy.nav.language, locale)}
+          >
+            {locale === "en" ? (
+              <>
+                <span className="text-ink">EN</span>
+                {" / "}
+                <span>FR</span>
+              </>
+            ) : (
+              <>
+                <span>EN</span>
+                {" / "}
+                <span className="text-ink">FR</span>
+              </>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={onCartClick}
+            className="relative font-body text-[13px] font-medium tracking-wide text-ink"
+            aria-label={t(copy.nav.openCart, locale)}
+          >
+            {t(copy.nav.cart, locale)}
+            {count > 0 ? (
+              <span className="absolute -right-3 -top-2 grid size-4 place-items-center rounded-full bg-sage text-[10px] font-semibold text-ivory">
+                {count}
+              </span>
+            ) : null}
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+}
