@@ -243,6 +243,22 @@ export const PRODUCTS: Product[] = [
       },
     ],
   },
+  {
+    id: "glass-vases",
+    name: { en: "Glass Vases", fr: "Vases en verre" },
+    image: "/images/glass-vases.jpg",
+    variants: [
+      {
+        type: "rental",
+        price: 18,
+        unit: { en: "/ day", fr: "/ jour" },
+        description: {
+          en: "Clear flared glass vase for table centerpieces · rental",
+          fr: "Vase en verre évasé pour centres de table · location",
+        },
+      },
+    ],
+  },
 ];
 
 export const GALLERY = [
@@ -262,6 +278,13 @@ export const GALLERY = [
     caption: {
       en: "Musée d'art · contemporary",
       fr: "Musée d'art · contemporain",
+    },
+  },
+  {
+    src: "/images/gallery-bridal-shower.jpg",
+    caption: {
+      en: "Bridal Shower Decorations",
+      fr: "Décorations de shower de mariée",
     },
   },
 ] as const;

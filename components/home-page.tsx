@@ -57,18 +57,23 @@ export function HomePage() {
               {t(copy.home.fullGallery, locale)}
             </Link>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {GALLERY.map((item) => (
-              <LightboxImage
-                key={item.src}
-                src={item.src}
-                alt={t(copy.home.galleryAlt, locale)}
-                width={1024}
-                height={1280}
-                loading="lazy"
-                sizes="(min-width: 640px) 30vw, 100vw"
-                className="aspect-[4/5] w-full rounded-2xl object-cover ring-1 ring-black/5"
-              />
+              <figure key={item.src} className="space-y-3">
+                <LightboxImage
+                  src={item.src}
+                  alt={item.caption[locale]}
+                  caption={item.caption[locale]}
+                  width={1024}
+                  height={1280}
+                  loading="lazy"
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
+                  className="aspect-[4/5] w-full rounded-2xl object-cover ring-1 ring-black/5"
+                />
+                <figcaption className="font-body text-[13px] text-ink/50">
+                  {item.caption[locale]}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
