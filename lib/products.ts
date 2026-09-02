@@ -19,16 +19,19 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "brass-candle-trio",
-    name: { en: "Brass Candle Trio", fr: "Trio de chandeliers en laiton" },
-    image: "/images/product-candles.jpg",
+    name: {
+      en: "Vintage Brass Gold Candle Holders",
+      fr: "Bougeoirs vintage laiton or",
+    },
+    image: "/images/vintage-brass-gold-candle-holders.jpg",
     variants: [
       {
-        type: "purchase",
-        price: 95,
-        unit: { en: "buy", fr: "achat" },
+        type: "rental",
+        price: 45,
+        unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "Set of 3 · yours to keep",
-          fr: "Ensemble de 3 · à conserver",
+          en: "Vintage brass-gold taper holders · 2-week min",
+          fr: "Bougeoirs vintage laiton or · min. 2 semaines",
         },
       },
     ],
