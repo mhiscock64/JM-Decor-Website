@@ -160,6 +160,89 @@ export const PRODUCTS: Product[] = [
       },
     ],
   },
+  {
+    id: "pink-table-runner",
+    name: { en: "Pink Table Runner", fr: "Chemin de table rose" },
+    image: "/images/pink-table-runner.jpg",
+    variants: [
+      {
+        type: "rental",
+        price: 35,
+        unit: { en: "/ day", fr: "/ jour" },
+        description: {
+          en: "Sheer blush runner with pearl detail · rental",
+          fr: "Chemin de table blush perlé · location",
+        },
+      },
+    ],
+  },
+  {
+    id: "white-lantern",
+    name: { en: "White Lantern", fr: "Lanterne blanche" },
+    image: "/images/white-lantern.jpg",
+    variants: [
+      {
+        type: "rental",
+        price: 25,
+        unit: { en: "/ day", fr: "/ jour" },
+        description: {
+          en: "White-washed open wooden lantern · 2-week min",
+          fr: "Lanterne en bois blanchi · min. 2 semaines",
+        },
+      },
+    ],
+  },
+  {
+    id: "brown-lantern",
+    name: { en: "Brown Lantern", fr: "Lanterne brune" },
+    image: "/images/brown-lantern.jpg",
+    variants: [
+      {
+        type: "rental",
+        price: 25,
+        unit: { en: "/ day", fr: "/ jour" },
+        description: {
+          en: "Dark wood open lantern frame · 2-week min",
+          fr: "Lanterne en bois foncé · min. 2 semaines",
+        },
+      },
+    ],
+  },
+  {
+    id: "white-backdrop",
+    name: { en: "White Backdrop", fr: "Toile de fond blanche" },
+    image: "/images/white-backdrop.jpg",
+    variants: [
+      {
+        type: "rental",
+        price: 130,
+        unit: { en: "/ day", fr: "/ jour" },
+        description: {
+          en: "Sheer white backdrop panels · rental",
+          fr: "Panneaux de toile de fond blancs · location",
+        },
+      },
+    ],
+  },
+  {
+    id: "white-arch-draping-fabric",
+    name: {
+      en: "White Arch Draping Fabric",
+      fr: "Voilage d'arche blanc",
+    },
+    image: "/images/white-arch-draping.jpg",
+    variants: [
+      {
+        type: "rental",
+        price: 90,
+        unit: { en: "/ day", fr: "/ jour" },
+        description: {
+          en: "Sheer white fabric for arches and columns · rental",
+          fr: "Voilage blanc pour arches et colonnes · location",
+        },
+      },
+    ],
+  },
 ];
 
 export const GALLERY = [
