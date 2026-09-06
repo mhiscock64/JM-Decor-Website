@@ -37,6 +37,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# local MCP secrets (GitHub PAT, etc.)
+.cursor/mcp.json
+
 # vercel
 .vercel
 

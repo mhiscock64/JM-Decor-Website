@@ -18,6 +18,8 @@ export type Product = {
   id: string;
   name: Localized;
   image: string;
+  category?: string;
+  tags?: string[];
   variants: ProductVariant[];
 };
 

@@ -4,11 +4,15 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
-import { localizeVariant } from "@/lib/products";
+import {
+  categoryLabel,
+  formatCad,
+  localizeVariant,
+  productCategory,
+} from "@/lib/products";
 import type { Product, VariantType } from "@/lib/types";
 import { LightboxImage } from "@/components/lightbox-image";
 import { CtaButton } from "@/components/cta";
-import { formatCad } from "@/lib/products";
 
 export function ProductCard({
   product,
@@ -59,7 +63,10 @@ export function ProductCard({
           <span className="text-ink/40"> · {variant.unit[locale]}</span>
         </span>
       </div>
-      <h2 className="mt-3 font-display text-xl font-medium">{name}</h2>
+      <p className="mt-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/40">
+        {categoryLabel(productCategory(product), locale)}
+      </p>
+      <h2 className="mt-1 font-display text-xl font-medium">{name}</h2>
       <p className="mt-1 font-body text-[13px] text-ink/55">
         {variant.description[locale]}
       </p>

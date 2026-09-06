@@ -52,6 +52,7 @@ export const copy = {
     all: { en: "All", fr: "Tout" },
     rental: { en: "Rental", fr: "Location" },
     purchase: { en: "Purchase", fr: "Achat" },
+    categories: { en: "Category", fr: "Catégorie" },
     rentalTag: { en: "rental", fr: "location" },
     purchaseTag: { en: "purchase", fr: "achat" },
     rent: { en: "Rent", fr: "Louer" },
