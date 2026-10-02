@@ -9,7 +9,13 @@ const links = [
   { href: "/shop", label: copy.nav.shop },
   { href: "/gallery", label: copy.nav.gallery },
   { href: "/quote", label: copy.nav.quote },
+  { href: "/wedding-decor-montreal", label: copy.footer.areasPage },
 ];
+
+function localizedHref(href: string, locale: "en" | "fr") {
+  if (locale !== "fr") return href;
+  return href === "/" ? "/fr" : `/fr${href}`;
+}
 
 export function SiteFooter() {
   const { locale } = useLanguage();
@@ -25,7 +31,7 @@ export function SiteFooter() {
         <nav className="flex flex-col gap-2 font-body text-[13px] font-medium tracking-wide text-ink/70">
           <p className="text-[11px] uppercase tracking-[0.22em] text-sage">{t(copy.footer.visit, locale)}</p>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-ink">
+            <Link key={link.href} href={localizedHref(link.href, locale)} className="hover:text-ink">
               {t(link.label, locale)}
             </Link>
           ))}

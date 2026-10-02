@@ -36,7 +36,7 @@ export function ProductCard({
   const name = product.name[locale];
 
   return (
-    <article className="flex flex-col rounded-2xl bg-cream/50 p-4 ring-1 ring-black/5">
+    <article id={product.id} className="flex flex-col rounded-2xl bg-cream/50 p-4 ring-1 ring-black/5">
       <LightboxImage
         src={product.image}
         alt={name}

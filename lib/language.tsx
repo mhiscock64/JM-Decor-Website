@@ -20,20 +20,22 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+export function LanguageProvider({
+  children,
+  initialLocale = "en",
+}: {
+  children: React.ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   useEffect(() => {
     try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === "en" || stored === "fr") {
-        // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage hydration
-        setLocaleState(stored);
-      }
+      window.localStorage.setItem(STORAGE_KEY, locale);
     } catch {
       /* ignore */
     }
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;

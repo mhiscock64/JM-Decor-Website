@@ -1,4 +1,33 @@
+import { PRODUCTS } from "@/lib/products";
+
 export const SITE_URL = "https://jm-decor-website.vercel.app";
+
+export const AREA_KEYWORDS = [
+  "wedding decor Montreal",
+  "wedding decorations Montreal",
+  "wedding décor Montréal",
+  "décoration de mariage Montréal",
+  "décor de mariage Grand Montréal",
+  "location décor mariage Montréal",
+  "wedding arch rental Montreal",
+  "arche de mariage Montréal",
+  "ceremony backdrop Montreal",
+  "wedding drapery rental Montreal",
+  "candlelight wedding décor",
+  "wedding table decorations Montreal",
+  "wedding favors Montreal",
+  "faveurs de mariage Montréal",
+  "Laval wedding decor",
+  "décoration mariage Laval",
+  "South Shore wedding decorations",
+  "décor mariage Rive-Sud",
+  "Longueuil wedding décor",
+  "Brossard wedding decorations",
+  "West Island wedding décor",
+  "décor mariage Ouest-de-l'Île",
+  "Vieux-Montréal wedding decorations",
+  "bridal shower decorations Montreal",
+];
 
 export const jsonLd = {
   "@context": "https://schema.org",
@@ -89,3 +118,38 @@ export const jsonLd = {
     },
   ],
 };
+
+export function catalogueJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "JM Decor wedding décor and decorations catalogue",
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: PRODUCTS.length,
+    itemListElement: PRODUCTS.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${SITE_URL}/shop#${product.id}`,
+      item: {
+        "@type": "Product",
+        name: product.name.en,
+        alternateName: product.name.fr,
+        image: `${SITE_URL}${product.image}`,
+        description: product.variants[0]?.description.en,
+        brand: { "@type": "Brand", name: "JM Decor" },
+        category: "Wedding décor",
+        offers: product.variants.map((variant) => ({
+          "@type": "Offer",
+          priceCurrency: "CAD",
+          price: variant.price,
+          availability: "https://schema.org/InStock",
+          url: `${SITE_URL}/quote`,
+          businessFunction:
+            variant.type === "rental"
+              ? "http://purl.org/goodrelations/v1#LeaseOut"
+              : "http://purl.org/goodrelations/v1#Sell",
+        })),
+      },
+    })),
+  };
+}

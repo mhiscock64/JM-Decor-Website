@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
@@ -16,11 +16,24 @@ const links = [
   { href: "/quote", key: "quote" as const },
 ];
 
+function localizedHref(href: string, locale: "en" | "fr") {
+  if (locale !== "fr") return href;
+  return href === "/" ? "/fr" : `/fr${href}`;
+}
+
 export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
-  const { locale, toggleLocale } = useLanguage();
+  const { locale, setLocale } = useLanguage();
   const { count } = useCart();
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const bare = pathname.replace(/^\/fr/, "") || "/";
+
+  function switchLanguage() {
+    const next = locale === "en" ? "fr" : "en";
+    setLocale(next);
+    router.push(localizedHref(bare === "" ? "/" : bare, next));
+  }
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -39,16 +52,16 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
   return (
     <header className="border-b border-ink/10">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 sm:py-4">
-        <Link href="/" aria-label={copy.brand} className="shrink-0">
+        <Link href={localizedHref("/", locale)} aria-label={copy.brand} className="shrink-0">
           <BrandLogo priority />
         </Link>
         <nav className="hidden items-center gap-9 font-body text-[13px] font-medium tracking-wide text-ink/70 sm:flex">
           {links.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={localizedHref(link.href, locale)}
               className={
-                pathname === link.href
+                bare === link.href
                   ? "text-ink"
                   : "transition-colors hover:text-sage"
               }
@@ -70,7 +83,7 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
           </Button>
           <button
             type="button"
-            onClick={toggleLocale}
+            onClick={switchLanguage}
             className="font-body text-[13px] font-medium tracking-wide text-ink/70"
             aria-label={t(copy.nav.language, locale)}
           >
@@ -118,7 +131,7 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
               {links.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={localizedHref(link.href, locale)}
                   onClick={() => setMenuOpen(false)}
                   className="rounded-md px-2 py-2.5 hover:bg-cream hover:text-ink"
                 >

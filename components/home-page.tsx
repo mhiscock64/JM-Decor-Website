@@ -25,8 +25,8 @@ export function HomePage() {
               {t(copy.home.lede, locale)}
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <CtaLink href="/shop">{t(copy.home.browse, locale)}</CtaLink>
-              <CtaLink href="/gallery" variant="outline">
+              <CtaLink href={locale === "fr" ? "/fr/shop" : "/shop"}>{t(copy.home.browse, locale)}</CtaLink>
+              <CtaLink href={locale === "fr" ? "/fr/gallery" : "/gallery"} variant="outline">
                 {t(copy.home.past, locale)}
               </CtaLink>
             </div>
@@ -51,7 +51,7 @@ export function HomePage() {
               {t(copy.home.glimpse, locale)}
             </h2>
             <Link
-              href="/gallery"
+              href={locale === "fr" ? "/fr/gallery" : "/gallery"}
               className="font-body text-[13px] font-medium tracking-wide text-sage hover:text-ink"
             >
               {t(copy.home.fullGallery, locale)}
@@ -98,6 +98,12 @@ export function HomePage() {
             </article>
           ))}
         </div>
+        <Link
+          href={locale === "fr" ? "/fr/wedding-decor-montreal" : "/wedding-decor-montreal"}
+          className="mt-6 inline-block font-body text-[13px] font-medium tracking-wide text-sage hover:text-ink"
+        >
+          {t(copy.home.areaMore, locale)}
+        </Link>
         <ul className="mt-10 flex flex-wrap gap-2">
           {copy.home.areas.map((area) => (
             <li
@@ -108,7 +114,8 @@ export function HomePage() {
             </li>
           ))}
         </ul>
-        <div className="mt-12 max-w-3xl space-y-6">
+        <h2 className="mt-12 font-display text-3xl font-medium">{t(copy.home.faqTitle, locale)}</h2>
+        <div className="mt-6 max-w-3xl space-y-6">
           {copy.home.faqs.map((item) => (
             <div key={item.q.en}>
               <h3 className="font-body text-[15px] font-medium text-ink">{t(item.q, locale)}</h3>
@@ -124,7 +131,7 @@ export function HomePage() {
         <p className="mx-auto mt-4 max-w-[48ch] font-body text-[15px] leading-relaxed text-pretty text-ink/65">
           {t(copy.home.ctaLede, locale)}
         </p>
-        <CtaLink href="/quote" className="mt-8">
+        <CtaLink href={locale === "fr" ? "/fr/quote" : "/quote"} className="mt-8">
           {t(copy.home.request, locale)}
         </CtaLink>
       </section>

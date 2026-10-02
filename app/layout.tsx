@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
-import { jsonLd, SITE_URL } from "@/lib/seo";
+import { AREA_KEYWORDS, jsonLd, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -28,29 +29,12 @@ export const metadata: Metadata = {
     template: "%s · JM Decor",
   },
   description,
-  keywords: [
-    "wedding decor Montreal",
-    "wedding decorations Montreal",
-    "wedding décor Montréal",
-    "décoration de mariage Montréal",
-    "décor de mariage Grand Montréal",
-    "wedding arch rental Montreal",
-    "ceremony backdrop Montreal",
-    "wedding drapery rental Montreal",
-    "candlelight wedding décor",
-    "wedding table decorations Montreal",
-    "wedding favors Montreal",
-    "Laval wedding decor",
-    "South Shore wedding decorations",
-    "Rive-Sud décor de mariage",
-    "West Island wedding décor",
-    "Vieux-Montréal wedding decorations",
-  ],
+  keywords: AREA_KEYWORDS,
   authors: [{ name: "JM Decor", url: SITE_URL }],
   creator: "JM Decor",
   alternates: {
     canonical: "/",
-    languages: { "en-CA": "/", "fr-CA": "/" },
+    languages: { "en-CA": "/", "fr-CA": "/fr" },
   },
   openGraph: {
     title,
@@ -88,15 +72,16 @@ export const metadata: Metadata = {
   category: "Wedding décor",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = (await headers()).get("x-jm-locale") === "fr" ? "fr" : "en";
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} h-full`}>
+    <html lang={locale} className={`${display.variable} ${body.variable} h-full`}>
       <body className="min-h-full bg-ivory font-body text-ink antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Providers>{children}</Providers>
+        <Providers initialLocale={locale}>{children}</Providers>
       </body>
     </html>
   );

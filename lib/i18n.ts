@@ -20,6 +20,10 @@ export const copy = {
     },
     visit: { en: "Visit", fr: "Visiter" },
     areasTitle: { en: "Where we set up", fr: "Où nous installons" },
+    areasPage: {
+      en: "Greater Montréal wedding décor",
+      fr: "Décor de mariage au Grand Montréal",
+    },
     areas: {
       en: "Montréal, Laval, Longueuil, Brossard, the South Shore, the West Island, Westmount, Outremont, and Vieux-Montréal.",
       fr: "Montréal, Laval, Longueuil, Brossard, la Rive-Sud, l'Ouest-de-l'Île, Westmount, Outremont et le Vieux-Montréal.",
@@ -48,6 +52,14 @@ export const copy = {
     areaLede: {
       en: "JM Decor styles ceremonies and receptions on the island of Montréal and across the greater area: Laval, the South Shore, and the West Island. Tell us the venue and we will quote delivery and setup.",
       fr: "JM Decor habille cérémonies et réceptions sur l'île de Montréal et dans le Grand Montréal : Laval, la Rive-Sud et l'Ouest-de-l'Île. Indiquez le lieu et nous soumissionnons la livraison et l'installation.",
+    },
+    areaMore: {
+      en: "Wedding décor across Greater Montréal →",
+      fr: "Décor de mariage au Grand Montréal →",
+    },
+    faqTitle: {
+      en: "Questions couples ask",
+      fr: "Questions fréquentes",
     },
     services: [
       {

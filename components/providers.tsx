@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { CartDrawer } from "@/components/cart-drawer";
 import { CartProvider } from "@/lib/cart";
 import { LanguageProvider } from "@/lib/language";
+import type { Locale } from "@/lib/types";
 
 function Shell({ children }: { children: React.ReactNode }) {
   const [cartOpen, setCartOpen] = useState(false);
@@ -19,9 +20,15 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  initialLocale = "en",
+}: {
+  children: React.ReactNode;
+  initialLocale?: Locale;
+}) {
   return (
-    <LanguageProvider>
+    <LanguageProvider initialLocale={initialLocale}>
       <CartProvider>
         <Shell>{children}</Shell>
       </CartProvider>
