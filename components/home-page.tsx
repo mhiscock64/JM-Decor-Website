@@ -78,6 +78,45 @@ export function HomePage() {
           </div>
         </div>
       </section>
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <p className="font-body text-[12px] font-medium uppercase tracking-[0.3em] text-sage">
+          {t(copy.home.areaKicker, locale)}
+        </p>
+        <h2 className="mt-4 max-w-3xl font-display text-4xl font-medium text-balance sm:text-5xl">
+          {t(copy.home.areaTitle, locale)}
+        </h2>
+        <p className="mt-5 max-w-2xl font-body text-[15px] leading-relaxed text-pretty text-ink/65">
+          {t(copy.home.areaLede, locale)}
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {copy.home.services.map((service) => (
+            <article key={service.title.en} className="rounded-2xl bg-cream/50 p-6 ring-1 ring-black/5">
+              <h3 className="font-display text-2xl font-medium">{t(service.title, locale)}</h3>
+              <p className="mt-3 font-body text-[14px] leading-relaxed text-ink/65">
+                {t(service.body, locale)}
+              </p>
+            </article>
+          ))}
+        </div>
+        <ul className="mt-10 flex flex-wrap gap-2">
+          {copy.home.areas.map((area) => (
+            <li
+              key={area.en}
+              className="rounded-full bg-ivory px-3 py-1.5 font-body text-[12px] tracking-wide text-ink/70 ring-1 ring-ink/10"
+            >
+              {t(area, locale)}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-12 max-w-3xl space-y-6">
+          {copy.home.faqs.map((item) => (
+            <div key={item.q.en}>
+              <h3 className="font-body text-[15px] font-medium text-ink">{t(item.q, locale)}</h3>
+              <p className="mt-1 font-body text-[14px] leading-relaxed text-ink/65">{t(item.a, locale)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
       <section className="mx-auto max-w-3xl px-6 py-24 text-center">
         <h2 className="font-display text-4xl font-medium text-balance">
           {t(copy.home.tell, locale)}
