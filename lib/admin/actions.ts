@@ -299,3 +299,21 @@ export async function saveQuote(input: {
     );
   }
 }
+
+export async function listStaff() {
+  const staff = await requireStaff();
+  if (staff.role !== "admin") redirect("/admin");
+  return sql<{ id: string; email: string; name: string; role: string }>("select id, email, name, role from staff order by created_at");
+}
+
+export async function addStaff(formData: FormData) {
+  const staff = await requireStaff();
+  if (staff.role !== "admin") redirect("/admin");
+  const email = String(formData.get("email") ?? "").trim();
+  const name = String(formData.get("name") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+  const role = String(formData.get("role")) === "admin" ? "admin" : "staff";
+  if (!email || password.length < 8 || !name) return;
+  await createStaff({ email, name, password, role });
+  revalidatePath("/admin/users");
+}
