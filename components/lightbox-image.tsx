@@ -49,6 +49,7 @@ export function LightboxImage({
         className="block w-full cursor-zoom-in overflow-hidden rounded-2xl"
       >
         <Image
+        unoptimized={src.startsWith("/api/")}
           src={src}
           alt={alt}
           width={width}

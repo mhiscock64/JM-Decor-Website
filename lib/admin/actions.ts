@@ -4,6 +4,7 @@ import { randomBytes } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createStaff, currentStaff, signIn, signOut, staffCount } from "@/lib/admin/auth";
+import { listImages, saveImage } from "@/lib/admin/media";
 import { ensureSchema, hasDatabase, sql } from "@/lib/admin/db";
 
 async function requireStaff() {
@@ -79,7 +80,9 @@ export async function saveProduct(formData: FormData) {
   const nameEn = String(formData.get("name_en") ?? "").trim();
   const nameFr = String(formData.get("name_fr") ?? nameEn).trim();
   const category = String(formData.get("category_id") ?? "venue-decor");
-  const image = String(formData.get("image") ?? "/images/hero.jpg");
+  const uploaded = formData.get("file");
+  let image = String(formData.get("image") ?? "").trim() || "/images/hero.jpg";
+  if (uploaded instanceof File && uploaded.size > 0) image = await saveImage(uploaded);
   const description = String(formData.get("description_en") ?? "");
   const price = Number(formData.get("price") ?? 0);
   const type = String(formData.get("type") ?? "rental") === "purchase" ? "purchase" : "rental";
@@ -316,4 +319,23 @@ export async function addStaff(formData: FormData) {
   if (!email || password.length < 8 || !name) return;
   await createStaff({ email, name, password, role });
   revalidatePath("/admin/users");
+}
+
+export async function uploadImage(formData: FormData) {
+  await requireStaff();
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) redirect("/admin/images?error=Choose+an+image");
+  try {
+    const url = await saveImage(file);
+    revalidatePath("/admin/images");
+    revalidatePath("/admin/products");
+    redirect(`/admin/images?url=${encodeURIComponent(url)}`);
+  } catch (error) {
+    redirect(`/admin/images?error=${encodeURIComponent(error instanceof Error ? error.message : "Upload failed")}`);
+  }
+}
+
+export async function imagesForOffice() {
+  await requireStaff();
+  return listImages();
 }

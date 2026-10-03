@@ -24,7 +24,8 @@ export default async function ProductsPage() {
           <option value="rental">Rental</option>
           <option value="purchase">Purchase</option>
         </select>
-        <input name="image" placeholder="/images/..." className="rounded-lg border border-ink/10 px-3 py-2 font-body text-[13px] md:col-span-2" />
+        <input name="image" placeholder="Image path or leave blank if uploading" className="rounded-lg border border-ink/10 px-3 py-2 font-body text-[13px]" />
+        <input name="file" type="file" accept="image/*" className="font-body text-[12px]" />
         <label className="flex items-center gap-2 font-body text-[13px]"><input type="checkbox" name="published" defaultChecked /> Published</label>
         <button className="rounded-full bg-ink px-4 py-2 font-body text-[13px] text-ivory">Add product</button>
       </form>

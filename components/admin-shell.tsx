@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ClipboardList, Inbox, LayoutDashboard, Menu, Package, ShoppingBag, Users, Warehouse, X } from "lucide-react";
+import { ClipboardList, ImageIcon, Inbox, LayoutDashboard, Menu, Package, ShoppingBag, Users, Warehouse, X } from "lucide-react";
 import { logoutAction } from "@/lib/admin/actions";
 import type { Staff } from "@/lib/admin/auth";
 
@@ -12,6 +12,7 @@ const groups = [
   { label: "Catalogue", items: [
     { href: "/admin/products", label: "Products", icon: Package, exact: false },
     { href: "/admin/inventory", label: "Inventory", icon: Warehouse, exact: false },
+    { href: "/admin/images", label: "Images", icon: ImageIcon, exact: false },
   ] },
   { label: "Sales", items: [
     { href: "/admin/quotes", label: "Quotes", icon: ClipboardList, exact: false },
