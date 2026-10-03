@@ -19,6 +19,7 @@ export const copy = {
       fr: "Décor et décorations de mariage pour le Grand Montréal. Louez un décor de cérémonie ou achetez les pièces que vous garderez. Livraison et installation dans la soumission.",
     },
     visit: { en: "Visit", fr: "Visiter" },
+    staff: { en: "Staff", fr: "Équipe" },
     areasTitle: { en: "Where we set up", fr: "Où nous installons" },
     areasPage: {
       en: "Greater Montréal wedding décor",

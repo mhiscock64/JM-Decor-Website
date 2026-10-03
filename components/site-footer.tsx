@@ -38,6 +38,9 @@ export function SiteFooter() {
           <a href={`mailto:${copy.email}`} className="hover:text-ink">
             {copy.email}
           </a>
+          <Link href="/admin/login" className="text-ink/40 hover:text-ink">
+            {t(copy.footer.staff, locale)}
+          </Link>
         </nav>
         <div>
           <p className="font-body text-[11px] uppercase tracking-[0.22em] text-sage">

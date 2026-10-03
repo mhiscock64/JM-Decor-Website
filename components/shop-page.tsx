@@ -11,20 +11,20 @@ import {
   formatCad,
   productCategory,
 } from "@/lib/products";
-import type { VariantType } from "@/lib/types";
+import type { Product, VariantType } from "@/lib/types";
 import { CtaLink } from "@/components/cta";
 import { ProductCard } from "@/components/product-card";
 
 type Availability = "all" | VariantType;
 
-export function ShopPage() {
+export function ShopPage({ catalogue = PRODUCTS }: { catalogue?: Product[] }) {
   const [availability, setAvailability] = useState<Availability>("all");
   const [category, setCategory] = useState("all");
   const cart = useCart();
   const { locale } = useLanguage();
 
   const products = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    return catalogue.filter((product) => {
       const matchesCategory =
         category === "all" || productCategory(product) === category;
       const matchesAvailability =
@@ -32,7 +32,7 @@ export function ShopPage() {
         product.variants.some((variant) => variant.type === availability);
       return matchesCategory && matchesAvailability;
     });
-  }, [availability, category]);
+  }, [availability, category, catalogue]);
 
   const sections = useMemo(() => {
     if (category !== "all") {

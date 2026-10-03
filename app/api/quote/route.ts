@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyCaptcha } from "@/lib/captcha";
+import { saveQuote } from "@/lib/admin/actions";
 
 type CartItem = {
   id: string;
@@ -63,6 +64,8 @@ export async function POST(request: Request) {
   };
 
   console.info("[jm-decor] quote request", quote);
+
+    await saveQuote({ fullName, email, phone: body.phone, eventDate: body.eventDate, venue: body.venue, guestCount: body.guestCount, notes: body.notes, locale: body.locale, subtotal: body.subtotal, cartItems: body.cartItems }).catch(() => undefined);
 
   return NextResponse.json({ ok: true });
 }

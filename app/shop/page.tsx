@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { ShopPage } from "@/components/shop-page";
+import { storefrontProducts } from "@/lib/admin/storefront";
 import { catalogueJsonLd } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
