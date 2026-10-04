@@ -20,6 +20,7 @@ type CartContextValue = {
   remove: (id: string) => void;
   setQuantity: (id: string, quantity: number) => void;
   clear: () => void;
+  applyLook: (look: Omit<CartLine, "quantity">[], replace: boolean) => void;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -80,6 +81,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clear = useCallback(() => setLines([]), []);
 
+  const applyLook = useCallback((look: Omit<CartLine, "quantity">[], replace: boolean) => {
+    setLines((current) => {
+      const base = replace ? [] : current;
+      return look.reduce((next, line) => {
+        const existing = next.find((item) => item.id === line.id);
+        if (existing) return next;
+        return [...next, { ...line, quantity: 1 }];
+      }, base);
+    });
+  }, []);
+
   const value = useMemo(
     () => ({
       lines,
@@ -89,8 +101,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       remove,
       setQuantity,
       clear,
+      applyLook,
     }),
-    [lines, add, remove, setQuantity, clear],
+    [lines, add, remove, setQuantity, clear, applyLook],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

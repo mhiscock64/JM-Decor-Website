@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PAGES = new Set(["", "shop", "gallery", "quote", "wedding-decor-montreal"]);
+const PAGES = new Set(["", "shop", "gallery", "quote", "plan", "wedding-decor-montreal"]);
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

@@ -11,6 +11,7 @@ import { BrandLogo } from "@/components/brand-logo";
 import { Button } from "@/components/ui/button";
 
 const links = [
+  { href: "/plan", key: "plan" as const },
   { href: "/gallery", key: "gallery" as const },
   { href: "/shop", key: "shop" as const },
   { href: "/quote", key: "quote" as const },

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 
-const paths = ["", "/shop", "/gallery", "/quote", "/wedding-decor-montreal"];
+const paths = ["", "/shop", "/gallery", "/quote", "/plan", "/wedding-decor-montreal"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

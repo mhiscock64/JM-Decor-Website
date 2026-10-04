@@ -271,6 +271,7 @@ const VENUE_PRODUCTS: Product[] = [
 ];
 
 export const CATEGORIES: { id: string; name: Localized }[] = [
+  { id: "tents", name: { en: "Tents", fr: "Chapiteaux" } },
   { id: "venue-decor", name: { en: "Venue Décor", fr: "Décor de salle" } },
   { id: "molds-candles", name: { en: "Molds & Candles", fr: "Moules et chandelles" } },
   { id: "wedding-keychains", name: { en: "Wedding Keychains", fr: "Porte-clés de mariage" } },
@@ -693,7 +694,42 @@ const PRINTABLE_PRODUCTS: Product[] = [
   ),
 ];
 
-export const PRODUCTS: Product[] = [...VENUE_PRODUCTS, ...PRINTABLE_PRODUCTS];
+
+const TENT_NOTE_EN = "Optional add-ons quoted separately: window wall panel (10 ft) $25–$40, solid wall panel (10 ft) $20–$30, Montréal-area delivery $75–$150, setup & takedown $150–$300, string lighting $100–$200. Tables and chairs rented separately.";
+const TENT_NOTE_FR = "Options en supplément : panneau fenêtre (10 pi) 25–40 $, panneau plein (10 pi) 20–30 $, livraison région de Montréal 75–150 $, installation et démontage 150–300 $, éclairage guirlande 100–200 $. Tables et chaises en location séparée.";
+
+const TENT_PRODUCTS: Product[] = [
+  {
+    id: "ivory-frame-tent-10x20",
+    name: { en: "Ivory Frame Tent 10×20", fr: "Chapiteau ivoire 10 × 20" },
+    image: "/images/ivory-frame-tent-10x20.png",
+    category: "tents",
+    variants: [{ type: "rental", price: 325, unit: { en: "/ day", fr: "/ jour" }, description: { en: "Seats up to 40 · peak ~13 ft · 2 available", fr: "Jusqu’à 40 places · faîte ~13 pi · 2 disponibles" } }],
+  },
+  {
+    id: "ivory-frame-tent-10x30",
+    name: { en: "Ivory Frame Tent 10×30", fr: "Chapiteau ivoire 10 × 30" },
+    image: "/images/ivory-frame-tent-10x30.png",
+    category: "tents",
+    variants: [{ type: "rental", price: 450, unit: { en: "/ day", fr: "/ jour" }, description: { en: "Seats up to 60 · peak ~15 ft · 2 available", fr: "Jusqu’à 60 places · faîte ~15 pi · 2 disponibles" } }],
+  },
+  {
+    id: "grand-ivory-frame-tent-20x40",
+    name: { en: "Grand Ivory Frame Tent 20×40", fr: "Grand chapiteau ivoire 20 × 40" },
+    image: "/images/grand-ivory-frame-tent-20x40.png",
+    category: "tents",
+    variants: [{ type: "rental", price: 950, unit: { en: "/ day", fr: "/ jour" }, description: { en: "Seats up to 160 · peak ~20 ft · 1 available", fr: "Jusqu’à 160 places · faîte ~20 pi · 1 disponible" } }],
+  },
+  {
+    id: "full-garden-tent-collection",
+    name: { en: "Full Garden Tent Collection", fr: "Collection complète de chapiteaux" },
+    image: "/images/full-garden-tent-collection.png",
+    category: "tents",
+    variants: [{ type: "rental", price: 2400, unit: { en: "/ day", fr: "/ jour" }, description: { en: `Two 10×20, two 10×30, and one 20×40. ${TENT_NOTE_EN}`, fr: `Deux 10×20, deux 10×30 et un 20×40. ${TENT_NOTE_FR}` } }],
+  },
+];
+
+export const PRODUCTS: Product[] = [...TENT_PRODUCTS, ...VENUE_PRODUCTS, ...PRINTABLE_PRODUCTS];
 
 export const GALLERY = [
   {

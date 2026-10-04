@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/language";
 import { BrandLogo } from "@/components/brand-logo";
 
 const links = [
+  { href: "/plan", label: copy.nav.plan },
   { href: "/shop", label: copy.nav.shop },
   { href: "/gallery", label: copy.nav.gallery },
   { href: "/quote", label: copy.nav.quote },
