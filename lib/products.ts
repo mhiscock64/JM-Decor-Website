@@ -102,7 +102,7 @@ const VENUE_PRODUCTS: Product[] = [
   {
     id: "garden-rose-arrangement",
     name: { en: "Garden Rose Arrangement", fr: "Composition jardin de roses" },
-    image: "/images/floral-garden.png",
+    image: "/images/floral-garden.jpg",
     variants: [
       {
         type: "rental",
@@ -121,7 +121,7 @@ const VENUE_PRODUCTS: Product[] = [
       en: "Crystal Cascade Arrangement",
       fr: "Composition cascade de cristaux",
     },
-    image: "/images/floral-crystal.png",
+    image: "/images/floral-crystal.jpg",
     variants: [
       {
         type: "rental",
@@ -137,7 +137,7 @@ const VENUE_PRODUCTS: Product[] = [
   {
     id: "acrylic-pedestal-stand",
     name: { en: "Acrylic Pedestal Stand", fr: "Piédestal en acrylique" },
-    image: "/images/acrylic-pedestal.png",
+    image: "/images/acrylic-pedestal.jpg",
     variants: [
       {
         type: "rental",
@@ -156,7 +156,7 @@ const VENUE_PRODUCTS: Product[] = [
       en: "Rose Gold Crystal Stand",
       fr: "Support cristal or rose",
     },
-    image: "/images/rose-gold-stand.png",
+    image: "/images/rose-gold-stand.jpg",
     variants: [
       {
         type: "rental",
@@ -292,7 +292,7 @@ function buy(
   return {
     id,
     name,
-    image: `/images/products/${id}.png`,
+    image: `/images/products/${id}.jpg`,
     category,
     tags,
     variants: [
@@ -723,7 +723,7 @@ const TENT_PRODUCTS: Product[] = [
   {
     id: "full-garden-tent-collection",
     name: { en: "Full Garden Tent Collection", fr: "Collection complète de chapiteaux" },
-    image: "/images/full-garden-tent-collection.png",
+    image: "/images/full-garden-tent-collection.jpg",
     category: "tents",
     variants: [{ type: "rental", price: 2400, unit: { en: "/ day", fr: "/ jour" }, description: { en: `Two 10×20, two 10×30, and one 20×40. ${TENT_NOTE_EN}`, fr: `Deux 10×20, deux 10×30 et un 20×40. ${TENT_NOTE_FR}` } }],
   },
@@ -755,6 +755,41 @@ export const GALLERY = [
     caption: {
       en: "Bridal Shower Decorations",
       fr: "Décorations de shower de mariée",
+    },
+  },
+  {
+    src: "/images/gallery-bud-vases.jpg",
+    caption: {
+      en: "Ivory and blush bud vases",
+      fr: "Vases ivoire et blush",
+    },
+  },
+  {
+    src: "/images/gallery-wood-wall.jpg",
+    caption: {
+      en: "Wood wall · white roses",
+      fr: "Mur de bois · roses blanches",
+    },
+  },
+  {
+    src: "/images/gallery-evening-drape.jpg",
+    caption: {
+      en: "Evening drapery and string lights",
+      fr: "Voilage du soir et guirlandes",
+    },
+  },
+  {
+    src: "/images/gallery-garden-lanterns.jpg",
+    caption: {
+      en: "Garden roses and lanterns",
+      fr: "Roses de jardin et lanternes",
+    },
+  },
+  {
+    src: "/images/gallery-candelabra.jpg",
+    caption: {
+      en: "Brass candelabra reception",
+      fr: "Réception au candélabre de laiton",
     },
   },
 ] as const;
