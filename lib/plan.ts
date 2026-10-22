@@ -38,7 +38,7 @@ export const MOODS = [
   },
   {
     id: "modern",
-    image: "/images/acrylic-pedestal.jpg",
+    image: "/images/acrylic-pedestal.png",
     name: { en: "Modern acrylic", fr: "Acrylique contemporain" },
     lede: { en: "Clear pedestal, crystal cascade, and a welcome sign.", fr: "Piédestal transparent, cascade de cristaux et panneau de bienvenue." },
     productIds: ["acrylic-pedestal-stand", "crystal-cascade-arrangement", "acrylic-welcome-sign"],

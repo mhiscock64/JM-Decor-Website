@@ -102,7 +102,7 @@ const VENUE_PRODUCTS: Product[] = [
   {
     id: "garden-rose-arrangement",
     name: { en: "Garden Rose Arrangement", fr: "Composition jardin de roses" },
-    image: "/images/floral-garden.jpg",
+    image: "/images/floral-garden.png",
     variants: [
       {
         type: "rental",
@@ -121,7 +121,7 @@ const VENUE_PRODUCTS: Product[] = [
       en: "Crystal Cascade Arrangement",
       fr: "Composition cascade de cristaux",
     },
-    image: "/images/floral-crystal.jpg",
+    image: "/images/floral-crystal.png",
     variants: [
       {
         type: "rental",
@@ -137,7 +137,7 @@ const VENUE_PRODUCTS: Product[] = [
   {
     id: "acrylic-pedestal-stand",
     name: { en: "Acrylic Pedestal Stand", fr: "Piédestal en acrylique" },
-    image: "/images/acrylic-pedestal.jpg",
+    image: "/images/acrylic-pedestal.png",
     variants: [
       {
         type: "rental",
