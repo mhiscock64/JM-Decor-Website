@@ -27,6 +27,11 @@ export async function generateMetadata(): Promise<Metadata> {
       };
 }
 
-export default function Page() {
-  return <QuoteForm />;
+// The homepage starter form sends ?date=YYYY-MM-DD&venue=… to pre-fill the request.
+export default async function Page({ searchParams }: PageProps<"/quote">) {
+  const { date, venue } = await searchParams;
+  const defaultDate =
+    typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : undefined;
+  const defaultVenue = typeof venue === "string" ? venue.trim().slice(0, 120) || undefined : undefined;
+  return <QuoteForm defaultDate={defaultDate} defaultVenue={defaultVenue} />;
 }
