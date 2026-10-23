@@ -44,7 +44,7 @@ export const jsonLd = {
       url: SITE_URL,
       image: `${SITE_URL}/images/hero.jpg`,
       logo: `${SITE_URL}/images/logo-en.png`,
-      email: "bonjour@jmdecor.ca",
+      email: "bonjour@montrealweddingdecorations.com",
       description:
         "Wedding décor and decorations for Greater Montréal. Ceremony arches, drapery walls, candlelight, welcome signs, and favors, available to rent or purchase, with delivery and setup.",
       address: {

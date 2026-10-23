@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/types";
 
 export const copy = {
   brand: { en: "Montreal Wedding Decorations", fr: "Décorations de Mariage Montréal" },
-  email: "bonjour@jmdecor.ca",
+  email: "bonjour@montrealweddingdecorations.com",
   city: { en: "Montréal, Quebec", fr: "Montréal, Québec" },
   nav: {
     gallery: { en: "Gallery", fr: "Galerie" },
