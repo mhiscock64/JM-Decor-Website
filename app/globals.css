@@ -159,6 +159,40 @@
   min-height: 0;
 }
 
+/* Gallery masonry: CSS columns (2 / 3 / 4). The component sets --c2/--c3/--c4 (columns per
+   breakpoint) and --n (photo count). With fewer photos than columns (filtered), the block keeps the
+   same column width and is centred, so there are no empty columns. */
+.gallery-masonry {
+  --k: 2;
+  --g: 12px;
+  column-count: var(--c2, 2);
+  column-gap: var(--g);
+  margin-inline: auto;
+  max-width: min(100%, calc((100% - (var(--k) - 1) * var(--g)) / var(--k) * var(--n, 9) + (var(--n, 9) - 1) * var(--g)));
+}
+@media (min-width: 640px) {
+  .gallery-masonry {
+    --k: 3;
+    column-count: var(--c3, 3);
+  }
+}
+@media (min-width: 1024px) {
+  .gallery-masonry {
+    --k: 4;
+    column-count: var(--c4, 4);
+  }
+}
+.gallery-masonry > .gallery-masonry-item {
+  break-inside: avoid;
+  margin-bottom: var(--g);
+}
+/* Photo hero: white focus ring with an ink halo so it shows on light and dark parts of the photo. */
+.on-dark-hero :where(a, button):focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,

@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
+import { copy, t } from "@/lib/i18n";
+import { useLanguage } from "@/lib/language";
 
 export function LightboxImage({
   src,
@@ -13,6 +16,7 @@ export function LightboxImage({
   caption,
   sizes,
   priority,
+  frameClassName = "rounded-2xl",
 }: {
   src: string;
   alt: string;
@@ -23,8 +27,13 @@ export function LightboxImage({
   caption?: string;
   sizes?: string;
   priority?: boolean;
+  /** Classes for the zoom button that frames the image (rounding must match the image). */
+  frameClassName?: string;
 }) {
+  const { locale } = useLanguage();
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -34,22 +43,26 @@ export function LightboxImage({
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKey);
+    closeRef.current?.focus();
+    const trigger = triggerRef.current;
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = previous;
+      trigger?.focus({ preventScroll: true });
     };
   }, [open]);
 
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
-        aria-label={`View larger image: ${alt}`}
-        className="block w-full cursor-zoom-in overflow-hidden rounded-2xl"
+        aria-label={copy.lightbox.open[locale](alt)}
+        className={`block w-full cursor-zoom-in overflow-hidden ${frameClassName}`}
       >
         <Image
-        unoptimized={src.startsWith("/api/")}
+          unoptimized={src.startsWith("/api/")}
           src={src}
           alt={alt}
           width={width}
@@ -60,7 +73,8 @@ export function LightboxImage({
           className={className}
         />
       </button>
-      {open ? (
+      {/* Portalled to <body> so no ancestor (multi-column layout, transforms) can trap the fixed overlay. */}
+      {open ? createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -69,10 +83,11 @@ export function LightboxImage({
           className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-6 backdrop-blur-sm"
         >
           <button
+            ref={closeRef}
             type="button"
             onClick={() => setOpen(false)}
-            aria-label="Close"
-            className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-ivory/90 font-body text-[18px] leading-none text-ink transition-colors hover:bg-ivory"
+            aria-label={t(copy.lightbox.close, locale)}
+            className="absolute right-5 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-ivory/90 font-body text-[18px] leading-none text-ink transition-colors hover:bg-ivory"
           >
             ×
           </button>
@@ -92,7 +107,8 @@ export function LightboxImage({
               </figcaption>
             ) : null}
           </figure>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </>
   );
