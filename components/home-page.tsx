@@ -3,140 +3,179 @@
 import Link from "next/link";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
-import { GALLERY, HERO } from "@/lib/products";
-import { CtaLink } from "@/components/cta";
+import { findProduct, HERO, PRODUCTS, productCategory } from "@/lib/products";
+import { formatPrice, formatVariantPrice } from "@/lib/format-price";
+import { INSPIRATION } from "@/lib/inspiration";
 import { localizedHref } from "@/lib/locale-path";
+import type { Locale } from "@/lib/types";
+import { Hero } from "@/components/home/hero";
+import { QuoteStarter } from "@/components/home/quote-starter";
+import { BenefitsStrip } from "@/components/home/benefits-strip";
+import { CategoryGrid, type CategoryCardProps } from "@/components/home/category-grid";
+import { InspirationWall } from "@/components/home/inspiration-wall";
+import { ClosingCta } from "@/components/home/closing-cta";
 
-import { LightboxImage } from "@/components/lightbox-image";
+function shopHref(locale: Locale, category: string, productId?: string) {
+  const base = `${localizedHref("/shop", locale)}?category=${category}`;
+  return productId ? `${base}#${productId}` : base;
+}
+
+function productCard(
+  locale: Locale,
+  productId: string,
+  name: string,
+  item?: string,
+): CategoryCardProps | null {
+  const product = findProduct(productId);
+  const variant = product?.variants.find((entry) => entry.type === "rental");
+  if (!product || !variant) return null;
+  return {
+    href: shopHref(locale, productCategory(product), product.id),
+    name,
+    image: { src: product.image, width: 1408, height: 1408 },
+    item: item ?? product.name[locale],
+    price: formatVariantPrice(variant, locale),
+    cta: t(copy.home.categoryCta, locale),
+  };
+}
+
+function categories(locale: Locale): CategoryCardProps[] {
+  const names = copy.home.categoryNames;
+  const tents = PRODUCTS.filter((product) => productCategory(product) === "tents");
+  const tentFrom = Math.min(
+    ...tents.flatMap((product) =>
+      product.variants.filter((variant) => variant.type === "rental").map((variant) => variant.price),
+    ),
+  );
+  const tentCard: CategoryCardProps | null = Number.isFinite(tentFrom)
+    ? {
+        href: shopHref(locale, "tents"),
+        name: t(names.tents, locale),
+        image: { src: "/images/full-garden-tent-collection.jpg", width: 1600, height: 900 },
+        item: t(copy.home.tentSizes, locale),
+        price: `${t(copy.home.from, locale)} ${formatPrice(tentFrom, locale)} ${locale === "fr" ? "/ jour" : "/ day"}`,
+        cta: t(copy.home.categoryCta, locale),
+      }
+    : null;
+  return [
+    productCard(locale, "ivory-bloom-arch", t(names.arches, locale)),
+    productCard(locale, "brass-candle-trio", t(names.candles, locale)),
+    productCard(locale, "sheer-drapery-wall", t(names.drapery, locale)),
+    tentCard,
+  ].filter((card): card is CategoryCardProps => card !== null);
+}
 
 export function HomePage() {
   const { locale } = useLanguage();
+  const quoteHref = localizedHref("/quote", locale);
+  const filters = copy.home.inspirationFilters;
 
   return (
     <>
-      <section className="mx-auto max-w-7xl px-6 pt-16 pb-24">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <p className="font-body text-[12px] font-medium uppercase tracking-[0.3em] text-sage">
-              {t(copy.home.kicker, locale)}
+      <Hero
+        eyebrow={t(copy.home.kicker, locale)}
+        title={
+          <>
+            {t(copy.home.titleLead, locale)} <em className="text-sage">{t(copy.home.titleAccent, locale)}</em>
+          </>
+        }
+        lede={t(copy.home.heroLede, locale)}
+        image={{ src: HERO.src, alt: HERO.alt[locale], width: 1440, height: 1120 }}
+        primaryCta={{ href: quoteHref, label: t(copy.home.request, locale) }}
+        secondaryCta={{ href: localizedHref("/shop", locale), label: t(copy.home.browse, locale) }}
+      />
+      <QuoteStarter
+        action={quoteHref}
+        title={t(copy.home.starter.title, locale)}
+        intro={t(copy.home.starter.intro, locale)}
+        dateLabel={t(copy.home.starter.date, locale)}
+        venueLabel={t(copy.home.starter.venue, locale)}
+        venuePlaceholder={t(copy.home.starter.venuePlaceholder, locale)}
+        submitLabel={t(copy.home.starter.submit, locale)}
+      />
+      <BenefitsStrip
+        label={t(copy.home.benefitsLabel, locale)}
+        items={copy.home.benefits.map((item) => t(item, locale))}
+      />
+      <CategoryGrid
+        kicker={t(copy.home.categoriesKicker, locale)}
+        title={t(copy.home.categoriesTitle, locale)}
+        allHref={localizedHref("/shop", locale)}
+        allLabel={t(copy.home.categoriesAll, locale)}
+        categories={categories(locale)}
+        footnote={t(copy.home.categoriesNote, locale)}
+      />
+      <InspirationWall
+        locale={locale}
+        kicker={t(copy.home.inspirationKicker, locale)}
+        title={t(copy.home.inspirationTitle, locale)}
+        intro={t(copy.home.inspirationIntro, locale)}
+        filterLabel={t(copy.home.inspirationFilter, locale)}
+        filters={[
+          { key: "all", label: t(filters.all, locale) },
+          { key: "ceremony", label: t(filters.ceremony, locale) },
+          { key: "reception", label: t(filters.reception, locale) },
+          { key: "shower", label: t(filters.shower, locale) },
+        ]}
+        columns={INSPIRATION}
+        countLabel={copy.home.inspirationCount[locale]}
+        galleryHref={localizedHref("/gallery", locale)}
+        galleryLabel={t(copy.home.fullGalleryLabel, locale)}
+      />
+      {/* Service area + FAQ: kept from the previous homepage (matches the FAQ structured data). */}
+      <section aria-labelledby="area-title" className="px-4 py-16 sm:px-8 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="font-body text-[12px] font-medium uppercase tracking-[0.28em] text-sage">
+              {t(copy.home.areaKicker, locale)}
             </p>
-            <h1 className="mt-6 font-display text-5xl font-medium leading-[1.02] text-balance sm:text-6xl md:text-7xl">
-              {t(copy.home.title, locale)}
-            </h1>
-            <p className="mt-6 max-w-[46ch] font-body text-[15px] leading-relaxed text-pretty text-ink/65">
-              {t(copy.home.lede, locale)}
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <CtaLink href={localizedHref("/shop", locale)}>{t(copy.home.browse, locale)}</CtaLink>
-              <CtaLink href={localizedHref("/gallery", locale)} variant="outline">
-                {t(copy.home.past, locale)}
-              </CtaLink>
-            </div>
-          </div>
-          <div className="md:col-span-7">
-            <LightboxImage
-              src={HERO.src}
-              alt={HERO.alt[locale]}
-              width={1440}
-              height={1120}
-              priority
-              sizes="(min-width: 768px) 58vw, 100vw"
-              className="aspect-[4/5] w-full rounded-2xl object-cover ring-1 ring-black/5"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="bg-cream/60">
-        <div className="mx-auto max-w-7xl px-6 py-24">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2 className="font-display text-3xl font-medium text-balance sm:text-4xl">
-              {t(copy.home.glimpse, locale)}
+            <h2 id="area-title" className="mt-3 font-display text-[32px] leading-tight font-normal text-balance sm:text-[40px]">
+              {t(copy.home.areaTitle, locale)}
             </h2>
+            <p className="mt-4 font-body text-[15px] leading-relaxed text-pretty text-ink/75">
+              {t(copy.home.areaLede, locale)}
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {copy.home.areas.map((area) => (
+                <li
+                  key={area.en}
+                  className="rounded-full px-3 py-1.5 font-body text-[13px] tracking-wide text-ink/75 ring-1 ring-ink/15"
+                >
+                  {t(area, locale)}
+                </li>
+              ))}
+            </ul>
             <Link
-              href={localizedHref("/gallery", locale)}
-              className="font-body text-[13px] font-medium tracking-wide text-sage hover:text-ink"
+              href={localizedHref("/wedding-decor-montreal", locale)}
+              className="mt-4 inline-flex min-h-[44px] items-center font-body text-[14px] underline underline-offset-4 hover:text-sage"
             >
-              {t(copy.home.fullGallery, locale)}
+              {t(copy.home.areaMore, locale)}
             </Link>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {GALLERY.map((item) => (
-              <figure key={item.src} className="space-y-3">
-                <LightboxImage
-                  src={item.src}
-                  alt={item.caption[locale]}
-                  caption={item.caption[locale]}
-                  width={1024}
-                  height={1280}
-                  loading="lazy"
-                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
-                  className="aspect-[4/5] w-full rounded-2xl object-cover ring-1 ring-black/5"
-                />
-                <figcaption className="font-body text-[13px] text-ink/50">
-                  {item.caption[locale]}
-                </figcaption>
-              </figure>
-            ))}
+          <div className="lg:col-span-6 lg:col-start-7">
+            <h2 className="font-display text-[32px] leading-tight font-normal sm:text-[40px]">
+              {t(copy.home.faqTitle, locale)}
+            </h2>
+            <dl className="mt-6 divide-y divide-ink/10 border-y border-ink/10">
+              {copy.home.faqs.map((item) => (
+                <div key={item.q.en} className="py-5">
+                  <dt className="font-body text-[15px] font-medium text-ink">{t(item.q, locale)}</dt>
+                  <dd className="mt-1.5 font-body text-[14px] leading-relaxed text-ink/75">{t(item.a, locale)}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-6 py-24">
-        <p className="font-body text-[12px] font-medium uppercase tracking-[0.3em] text-sage">
-          {t(copy.home.areaKicker, locale)}
-        </p>
-        <h2 className="mt-4 max-w-3xl font-display text-4xl font-medium text-balance sm:text-5xl">
-          {t(copy.home.areaTitle, locale)}
-        </h2>
-        <p className="mt-5 max-w-2xl font-body text-[15px] leading-relaxed text-pretty text-ink/65">
-          {t(copy.home.areaLede, locale)}
-        </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {copy.home.services.map((service) => (
-            <article key={service.title.en} className="rounded-2xl bg-cream/50 p-6 ring-1 ring-black/5">
-              <h3 className="font-display text-2xl font-medium">{t(service.title, locale)}</h3>
-              <p className="mt-3 font-body text-[14px] leading-relaxed text-ink/65">
-                {t(service.body, locale)}
-              </p>
-            </article>
-          ))}
-        </div>
-        <Link
-          href={localizedHref("/wedding-decor-montreal", locale)}
-          className="mt-6 inline-block font-body text-[13px] font-medium tracking-wide text-sage hover:text-ink"
-        >
-          {t(copy.home.areaMore, locale)}
-        </Link>
-        <ul className="mt-10 flex flex-wrap gap-2">
-          {copy.home.areas.map((area) => (
-            <li
-              key={area.en}
-              className="rounded-full bg-ivory px-3 py-1.5 font-body text-[12px] tracking-wide text-ink/70 ring-1 ring-ink/10"
-            >
-              {t(area, locale)}
-            </li>
-          ))}
-        </ul>
-        <h2 className="mt-12 font-display text-3xl font-medium">{t(copy.home.faqTitle, locale)}</h2>
-        <div className="mt-6 max-w-3xl space-y-6">
-          {copy.home.faqs.map((item) => (
-            <div key={item.q.en}>
-              <h3 className="font-body text-[15px] font-medium text-ink">{t(item.q, locale)}</h3>
-              <p className="mt-1 font-body text-[14px] leading-relaxed text-ink/65">{t(item.a, locale)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="mx-auto max-w-3xl px-6 py-24 text-center">
-        <h2 className="font-display text-4xl font-medium text-balance">
-          {t(copy.home.tell, locale)}
-        </h2>
-        <p className="mx-auto mt-4 max-w-[48ch] font-body text-[15px] leading-relaxed text-pretty text-ink/65">
-          {t(copy.home.ctaLede, locale)}
-        </p>
-        <CtaLink href={localizedHref("/quote", locale)} className="mt-8">
-          {t(copy.home.request, locale)}
-        </CtaLink>
-      </section>
+      <ClosingCta
+        title={
+          <>
+            {t(copy.home.tellLead, locale)} <em>{t(copy.home.tellAccent, locale)}</em>
+          </>
+        }
+        body={t(copy.home.ctaLede, locale)}
+        cta={{ href: quoteHref, label: t(copy.home.request, locale) }}
+      />
     </>
   );
 }
