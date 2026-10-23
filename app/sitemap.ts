@@ -14,12 +14,12 @@ const paths: { path: string; priority: number; frPriority: number; changeFrequen
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return paths.flatMap(({ path, priority, frPriority, changeFrequency }) => {
-    const en = path ? `${SITE_URL}${path}` : SITE_URL;
-    const fr = path ? `${SITE_URL}/fr${path}` : `${SITE_URL}/fr`;
-    const languages = { "en-CA": en, "fr-CA": fr, "x-default": en };
+    const fr = path ? `${SITE_URL}${path}` : SITE_URL;
+    const en = path ? `${SITE_URL}/en${path}` : `${SITE_URL}/en`;
+    const languages = { "en-CA": en, "fr-CA": fr, "x-default": fr };
     return [
-      { url: en, lastModified, changeFrequency, priority, alternates: { languages } },
-      { url: fr, lastModified, changeFrequency, priority: frPriority, alternates: { languages } },
+      { url: fr, lastModified, changeFrequency, priority, alternates: { languages } },
+      { url: en, lastModified, changeFrequency, priority: frPriority, alternates: { languages } },
     ];
   });
 }

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
+import { localizedHref } from "@/lib/locale-path";
 import { useLanguage } from "@/lib/language";
 import { displayLine, formatCad } from "@/lib/products";
 import { CtaButton } from "@/components/cta";
@@ -258,7 +259,7 @@ export function QuoteForm() {
             ) : null}
             <p className="mt-4 font-body text-[12px] leading-relaxed text-ink/55">
               {t(copy.quote.consent, locale)}{" "}
-              <Link href={locale === "fr" ? "/fr/privacy" : "/privacy"} className="underline underline-offset-2 hover:text-ink">
+              <Link href={localizedHref("/privacy", locale)} className="underline underline-offset-2 hover:text-ink">
                 {t(copy.footer.privacy, locale)}
               </Link>
             </p>

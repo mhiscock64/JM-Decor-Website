@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { localizedHref } from "@/lib/locale-path";
+
 import { useLanguage } from "@/lib/language";
 
 export function ConsentBanner({ initialHidden }: { initialHidden: boolean }) {
@@ -28,7 +30,7 @@ export function ConsentBanner({ initialHidden }: { initialHidden: boolean }) {
             ? "Nous demandons votre consentement avant tout suivi non essentiel. Ce site n’utilise qu’un témoin essentiel pour retenir la langue, et aucun témoin publicitaire ou analytique."
             : "We ask for your consent before any non-essential tracking. This site uses only an essential cookie to remember your language, and no advertising or analytics cookies."}{" "}
           <Link
-            href={fr ? "/fr/privacy" : "/privacy"}
+            href={localizedHref("/privacy", fr ? "fr" : "en")}
             className="underline underline-offset-2 hover:text-ink"
           >
             {fr ? "Confidentialité" : "Privacy"}

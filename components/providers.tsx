@@ -27,7 +27,7 @@ function Shell({ children, consentSet }: { children: React.ReactNode; consentSet
 
 export function Providers({
   children,
-  initialLocale = "en",
+  initialLocale = "fr",
   consentSet = false,
 }: {
   children: React.ReactNode;

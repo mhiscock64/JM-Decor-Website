@@ -18,9 +18,9 @@ const body = Inter({
   variable: "--font-inter",
 });
 
-const title = "Montreal Wedding Decorations | Greater Montréal";
+const title = "Décorations de Mariage Montréal";
 const description =
-  "Rent or buy wedding décor in Greater Montréal. Arches, drapery, candlelight, favors, and signs, with delivery and setup.";
+  "Louez ou achetez le décor de mariage au Grand Montréal. Arches, voilages, chandelles, faveurs et enseignes, avec livraison et installation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   creator: "Montreal Wedding Decorations",
   alternates: {
     canonical: "/",
-    languages: langAlts("/", "/fr"),
+    languages: langAlts("/en", "/"),
   },
   openGraph: {
     title,
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Montreal Wedding Decorations",
-    locale: "en_CA",
-    alternateLocale: ["fr_CA"],
+    locale: "fr_CA",
+    alternateLocale: ["en_CA"],
     images: [
       {
         url: "/images/hero.jpg",
@@ -55,8 +55,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
     images: ["/images/hero.jpg"],
   },
   robots: {

@@ -10,18 +10,19 @@ export async function generateMetadata(): Promise<Metadata> {
         title: "Galerie de décor de mariage",
         description:
           "Décor de mariage récent au Grand Montréal : jardins, salles aux chandelles, Vieux-Montréal et showers. Pièces à louer ou à acheter.",
-        alternates: { canonical: "/fr/gallery", languages: langAlts("/gallery", "/fr/gallery") },
-        openGraph: { title: "Galerie de décor de mariage à Montréal", url: "/fr/gallery", locale: "fr_CA" },
+        alternates: { canonical: "/gallery", languages: langAlts("/en/gallery", "/gallery") },
+        openGraph: { title: "Galerie de décor de mariage à Montréal", url: "/gallery", locale: "fr_CA" },
       }
     : {
         title: "Wedding décor gallery",
         description:
           "Recent wedding décor in Greater Montréal: garden ceremonies, candlelit rooms, and bridal showers. Pieces you can rent or buy.",
-        alternates: { canonical: "/gallery", languages: langAlts("/gallery", "/fr/gallery") },
+        alternates: { canonical: "/en/gallery", languages: langAlts("/en/gallery", "/gallery") },
         openGraph: {
           title: "Wedding décor gallery in Montréal",
           description: "Garden ceremonies, candlelit ballrooms, and bridal shower decorations styled across Greater Montréal.",
-          url: "/gallery",
+          url: "/en/gallery",
+          locale: "en_CA",
         },
       };
 }

@@ -3,7 +3,7 @@ import { PRODUCTS } from "@/lib/products";
 export const SITE_URL = "https://www.montrealweddingdecorations.com";
 
 export function langAlts(en: string, fr: string) {
-  return { "en-CA": en, "fr-CA": fr, "x-default": en };
+  return { "en-CA": en, "fr-CA": fr, "x-default": fr };
 }
 
 export const AREA_KEYWORDS = [

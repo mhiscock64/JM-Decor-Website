@@ -16,12 +16,12 @@ export async function generateMetadata(): Promise<Metadata> {
         "Location ou achat de décoration de mariage au Grand Montréal : arches, voilages, chandelles et faveurs. Livraison et installation.",
       keywords: AREA_KEYWORDS,
       alternates: {
-        canonical: "/fr/wedding-decor-montreal",
-        languages: langAlts("/wedding-decor-montreal", "/fr/wedding-decor-montreal"),
+        canonical: "/wedding-decor-montreal",
+        languages: langAlts("/en/wedding-decor-montreal", "/wedding-decor-montreal"),
       },
       openGraph: {
         title: "Décoration de mariage au Grand Montréal",
-        url: "/fr/wedding-decor-montreal",
+        url: "/wedding-decor-montreal",
         locale: "fr_CA",
       },
     };
@@ -31,13 +31,13 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     keywords: AREA_KEYWORDS,
     alternates: {
-      canonical: "/wedding-decor-montreal",
-      languages: langAlts("/wedding-decor-montreal", "/fr/wedding-decor-montreal"),
+      canonical: "/en/wedding-decor-montreal",
+      languages: langAlts("/en/wedding-decor-montreal", "/wedding-decor-montreal"),
     },
     openGraph: {
       title: title,
       description,
-      url: "/wedding-decor-montreal",
+      url: "/en/wedding-decor-montreal",
       locale: "en_CA",
       alternateLocale: ["fr_CA"],
     },
@@ -54,14 +54,14 @@ const areas = [
 
 export default async function Page() {
   const fr = (await headers()).get("x-jm-locale") === "fr";
-  const shopHref = fr ? "/fr/shop" : "/shop";
-  const quoteHref = fr ? "/fr/quote" : "/quote";
+  const shopHref = fr ? "/shop" : "/en/shop";
+  const quoteHref = fr ? "/quote" : "/en/quote";
   const serviceLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Wedding décor and decorations in Greater Montréal",
     serviceType: "Wedding decoration rental and sales",
-    url: `${SITE_URL}/wedding-decor-montreal`,
+    url: `${SITE_URL}${fr ? "" : "/en"}/wedding-decor-montreal`,
     provider: { "@id": `${SITE_URL}/#business` },
     areaServed: ["Montréal", "Laval", "Longueuil", "Brossard", "West Island", "South Shore"],
     availableLanguage: ["en", "fr"],
@@ -132,8 +132,8 @@ export default async function Page() {
         confirmons les pièces, la livraison et l'installation.
       </p>
       <p className="mt-4 font-body text-[15px] leading-relaxed text-ink/70">
-        <Link href="/fr" className="text-sage underline-offset-4 hover:underline">
-          Voir le site en français
+        <Link href={fr ? "/en" : "/"} className="text-sage underline-offset-4 hover:underline">
+          {fr ? "View the site in English" : "Voir le site en français"}
         </Link>
       </p>
     </article>

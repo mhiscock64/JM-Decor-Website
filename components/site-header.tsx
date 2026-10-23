@@ -7,6 +7,7 @@ import { Menu } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
+import { barePath, localizedHref } from "@/lib/locale-path";
 import { BrandLogo } from "@/components/brand-logo";
 import { Button } from "@/components/ui/button";
 
@@ -17,17 +18,12 @@ const links = [
   { href: "/quote", key: "quote" as const },
 ];
 
-function localizedHref(href: string, locale: "en" | "fr") {
-  if (locale !== "fr") return href;
-  return href === "/" ? "/fr" : `/fr${href}`;
-}
-
 export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
   const { locale, setLocale } = useLanguage();
   const { count } = useCart();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const bare = pathname.replace(/^\/fr/, "") || "/";
+  const bare = barePath(pathname);
 
   useEffect(() => {
     if (!menuOpen) return;

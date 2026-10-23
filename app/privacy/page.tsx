@@ -11,21 +11,21 @@ export async function generateMetadata(): Promise<Metadata> {
         title: "Politique de confidentialité",
         description:
           "Politique de confidentialité de Décorations de Mariage Montréal. Renseignements recueillis pour une soumission, témoins essentiels et vos droits au Québec.",
-        alternates: { canonical: "/fr/privacy", languages: langAlts("/privacy", "/fr/privacy") },
-        openGraph: { title: "Politique de confidentialité", url: "/fr/privacy", locale: "fr_CA" },
+        alternates: { canonical: "/privacy", languages: langAlts("/en/privacy", "/privacy") },
+        openGraph: { title: "Politique de confidentialité", url: "/privacy", locale: "fr_CA" },
       }
     : {
         title: "Privacy policy",
         description:
           "Privacy policy for Montreal Wedding Decorations. What we collect for a quote, the essential language cookie, and your rights in Quebec.",
-        alternates: { canonical: "/privacy", languages: langAlts("/privacy", "/fr/privacy") },
-        openGraph: { title: "Privacy policy", url: "/privacy", locale: "en_CA" },
+        alternates: { canonical: "/en/privacy", languages: langAlts("/en/privacy", "/privacy") },
+        openGraph: { title: "Privacy policy", url: "/en/privacy", locale: "en_CA" },
       };
 }
 
 export default async function Page() {
   const fr = (await headers()).get("x-jm-locale") === "fr";
-  const other = fr ? "/privacy" : "/fr/privacy";
+  const other = fr ? "/en/privacy" : "/privacy";
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-20">

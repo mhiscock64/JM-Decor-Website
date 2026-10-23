@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
+import { localizedHref } from "@/lib/locale-path";
+
 import { BrandLogo } from "@/components/brand-logo";
 
 const links = [
@@ -12,11 +14,6 @@ const links = [
   { href: "/quote", label: copy.nav.quote },
   { href: "/wedding-decor-montreal", label: copy.footer.areasPage },
 ];
-
-function localizedHref(href: string, locale: "en" | "fr") {
-  if (locale !== "fr") return href;
-  return href === "/" ? "/fr" : `/fr${href}`;
-}
 
 export function SiteFooter() {
   const { locale } = useLanguage();

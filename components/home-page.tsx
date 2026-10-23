@@ -5,6 +5,8 @@ import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
 import { GALLERY, HERO } from "@/lib/products";
 import { CtaLink } from "@/components/cta";
+import { localizedHref } from "@/lib/locale-path";
+
 import { LightboxImage } from "@/components/lightbox-image";
 
 export function HomePage() {
@@ -25,8 +27,8 @@ export function HomePage() {
               {t(copy.home.lede, locale)}
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <CtaLink href={locale === "fr" ? "/fr/shop" : "/shop"}>{t(copy.home.browse, locale)}</CtaLink>
-              <CtaLink href={locale === "fr" ? "/fr/gallery" : "/gallery"} variant="outline">
+              <CtaLink href={localizedHref("/shop", locale)}>{t(copy.home.browse, locale)}</CtaLink>
+              <CtaLink href={localizedHref("/gallery", locale)} variant="outline">
                 {t(copy.home.past, locale)}
               </CtaLink>
             </div>
@@ -51,7 +53,7 @@ export function HomePage() {
               {t(copy.home.glimpse, locale)}
             </h2>
             <Link
-              href={locale === "fr" ? "/fr/gallery" : "/gallery"}
+              href={localizedHref("/gallery", locale)}
               className="font-body text-[13px] font-medium tracking-wide text-sage hover:text-ink"
             >
               {t(copy.home.fullGallery, locale)}
@@ -99,7 +101,7 @@ export function HomePage() {
           ))}
         </div>
         <Link
-          href={locale === "fr" ? "/fr/wedding-decor-montreal" : "/wedding-decor-montreal"}
+          href={localizedHref("/wedding-decor-montreal", locale)}
           className="mt-6 inline-block font-body text-[13px] font-medium tracking-wide text-sage hover:text-ink"
         >
           {t(copy.home.areaMore, locale)}
@@ -131,7 +133,7 @@ export function HomePage() {
         <p className="mx-auto mt-4 max-w-[48ch] font-body text-[15px] leading-relaxed text-pretty text-ink/65">
           {t(copy.home.ctaLede, locale)}
         </p>
-        <CtaLink href={locale === "fr" ? "/fr/quote" : "/quote"} className="mt-8">
+        <CtaLink href={localizedHref("/quote", locale)} className="mt-8">
           {t(copy.home.request, locale)}
         </CtaLink>
       </section>
