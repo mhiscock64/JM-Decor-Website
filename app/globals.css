@@ -61,7 +61,8 @@
   --ivory: oklch(98% 0.008 80);
   --cream: oklch(95% 0.012 75);
   --ink: oklch(27% 0.008 60);
-  --sage: oklch(55% 0.03 145);
+  /* Darkened from oklch(55% 0.03 145) so small sage text passes 4.5:1 on ivory and cream. */
+  --sage: #4f5e50;
   --sage-soft: oklch(72% 0.025 145);
   --blush: oklch(82% 0.035 50);
   --background: var(--ivory);
@@ -75,7 +76,7 @@
   --secondary: var(--cream);
   --secondary-foreground: var(--ink);
   --muted: var(--cream);
-  --muted-foreground: oklch(27% 0.008 60 / 0.6);
+  --muted-foreground: oklch(27% 0.008 60 / 0.75);
   --accent: var(--cream);
   --accent-foreground: var(--ink);
   --destructive: oklch(55% 0.22 27);
@@ -103,6 +104,15 @@
   }
   html {
     color-scheme: light;
+    scroll-padding-top: 88px;
+  }
+  /* Visible keyboard focus everywhere (2px, offset); inverted on dark bands. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+  .on-dark :where(a, button, input):focus-visible {
+    outline-color: var(--ivory);
   }
   body {
     @apply bg-ivory text-ink antialiased;
@@ -113,5 +123,47 @@
   h3,
   h4 {
     font-family: var(--font-display);
+  }
+}
+
+/* Filtered inspiration wall: centred rows with a column count that divides the result. */
+.inspiration-filtered {
+  --c: 2;
+  --g: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--g);
+}
+@media (min-width: 640px) {
+  .inspiration-filtered {
+    --g: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .inspiration-filtered {
+    --c: var(--lgc, 4);
+    --g: 24px;
+  }
+}
+.inspiration-filtered > .inspiration-item {
+  flex: 0 0 calc((100% - (var(--c) - 1) * var(--g)) / var(--c));
+}
+/* Odd counts on two columns: feature the first photo full width so the last row is full. */
+@media (max-width: 1023.98px) {
+  .inspiration-filtered[data-odd] > .inspiration-item:first-child {
+    flex-basis: 100%;
+  }
+}
+.inspiration-filtered figcaption {
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }

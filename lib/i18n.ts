@@ -13,6 +13,16 @@ export const copy = {
     openCart: { en: "Open cart", fr: "Ouvrir le panier" },
     menu: { en: "Menu", fr: "Menu" },
     language: { en: "Switch to French", fr: "Passer à l'anglais" },
+    languageLabel: { en: "Language", fr: "Langue" },
+    main: { en: "Main", fr: "Principal" },
+    closeMenu: { en: "Close menu", fr: "Fermer le menu" },
+    home: { en: "home", fr: "accueil" },
+    cartCount: {
+      en: (n: number) => `Cart, ${n} item${n === 1 ? "" : "s"}`,
+      fr: (n: number) => `Panier, ${n} article${n > 1 ? "s" : ""}`,
+    },
+    quoteShort: { en: "Request a quote", fr: "Demander une soumission" },
+    skip: { en: "Skip to content", fr: "Aller au contenu" },
   },
   footer: {
     blurb: {
@@ -20,6 +30,7 @@ export const copy = {
       fr: "Décor et décorations de mariage pour le Grand Montréal. Louez un décor de cérémonie ou achetez les pièces que vous garderez. Livraison et installation dans la soumission.",
     },
     visit: { en: "Visit", fr: "Visiter" },
+    footerNav: { en: "Footer", fr: "Pied de page" },
     staff: { en: "Staff", fr: "Équipe" },
     areasTitle: { en: "Where we set up", fr: "Où nous installons" },
     areasPage: {
@@ -77,6 +88,62 @@ export const copy = {
   home: {
     kicker: { en: "Greater Montréal · Wedding décor", fr: "Grand Montréal · Décor de mariage" },
     title: { en: "Weddings dressed in light", fr: "Des mariages habillés de lumière" },
+    titleLead: { en: "Weddings dressed", fr: "Des mariages habillés" },
+    titleAccent: { en: "in light", fr: "de lumière" },
+    heroLede: {
+      en: "Arches, candlelight, and drapery to rent for the weekend, or purchase to keep. Delivery and setup are priced in your quote.",
+      fr: "Arches, chandelles et voilages à louer pour le week-end, ou à acheter pour les garder. Livraison et installation chiffrées dans votre soumission.",
+    },
+    starter: {
+      title: { en: "Start your quote", fr: "Commencez votre soumission" },
+      intro: {
+        en: "No payment needed now. Tell us the venue and we will quote delivery and setup.",
+        fr: "Aucun paiement maintenant. Indiquez le lieu et nous soumissionnons la livraison et l’installation.",
+      },
+      date: { en: "Wedding date", fr: "Date du mariage" },
+      venue: { en: "Reception venue", fr: "Lieu de la réception" },
+      venuePlaceholder: { en: "e.g. Laval, Brossard", fr: "ex. Laval, Brossard" },
+      submit: { en: "Start", fr: "Commencer" },
+    },
+    benefitsLabel: { en: "Why couples choose us", fr: "Pourquoi nous choisir" },
+    benefits: [
+      { en: "Delivery and setup included in the quote", fr: "Livraison et installation dans la soumission" },
+      { en: "No online payment", fr: "Aucun paiement en ligne" },
+      { en: "Rent for the weekend or buy to keep", fr: "Louer pour le week-end ou acheter" },
+      { en: "Island, Laval, South Shore, West Island", fr: "Île, Laval, Rive-Sud, Ouest-de-l’Île" },
+    ],
+    categoriesKicker: { en: "Rentals", fr: "Location" },
+    categoriesTitle: { en: "Rent by category", fr: "Louer par catégorie" },
+    categoriesAll: { en: "Full catalogue", fr: "Tout le catalogue" },
+    categoryCta: { en: "View in the catalogue →", fr: "Voir au catalogue →" },
+    from: { en: "From", fr: "Dès" },
+    categoryNames: {
+      arches: { en: "Arches", fr: "Arches" },
+      candles: { en: "Candlelight", fr: "Chandelles" },
+      drapery: { en: "Drapery", fr: "Voilages" },
+      tents: { en: "Tents", fr: "Chapiteaux" },
+    },
+    tentSizes: { en: "10 × 20 to 20 × 40 ft", fr: "Du 10 × 20 au 20 × 40 pi" },
+    categoriesNote: {
+      en: "Daily rental prices, before delivery and setup. Book some pieces 2 weeks ahead.",
+      fr: "Prix de location par jour, avant livraison et installation. Réservez certaines pièces 2 semaines à l’avance.",
+    },
+    inspirationKicker: { en: "Gallery", fr: "Galerie" },
+    inspirationTitle: { en: "Inspiration", fr: "Inspirations" },
+    inspirationIntro: { en: "A glimpse of recent weddings.", fr: "Un aperçu de mariages récents." },
+    inspirationFilter: { en: "Filter inspiration", fr: "Filtrer les inspirations" },
+    inspirationFilters: {
+      all: { en: "All", fr: "Tout" },
+      ceremony: { en: "Ceremony", fr: "Cérémonie" },
+      reception: { en: "Reception", fr: "Réception" },
+      shower: { en: "Bridal shower", fr: "Shower de mariée" },
+    },
+    inspirationCount: {
+      en: (n: number) => `${n} photo${n === 1 ? "" : "s"} shown`,
+      fr: (n: number) => `${n} inspiration${n > 1 ? "s" : ""} affichée${n > 1 ? "s" : ""}`,
+    },
+    tellLead: { en: "Tell us about", fr: "Parlez-nous de" },
+    tellAccent: { en: "your day", fr: "votre journée" },
     lede: {
       en: "Wedding décor and decorations for celebrations across Greater Montréal. Arches, candlelight, and drapery you can rent for the weekend, or purchase to keep.",
       fr: "Décor et décorations de mariage pour les célébrations du Grand Montréal. Arches, chandelles et voilages à louer pour le week-end, ou à acheter pour les garder.",
@@ -85,6 +152,7 @@ export const copy = {
     past: { en: "View past weddings", fr: "Voir les mariages" },
     glimpse: { en: "A glimpse of recent weddings", fr: "Un aperçu de mariages récents" },
     fullGallery: { en: "See the full gallery →", fr: "Voir toute la galerie →" },
+    fullGalleryLabel: { en: "See the full gallery", fr: "Voir toute la galerie" },
     galleryAlt: {
       en: "Wedding décor styled in Montréal",
       fr: "Décor de mariage à Montréal",
@@ -160,8 +228,8 @@ export const copy = {
           fr: "Puis-je louer une arche de mariage à Montréal?",
         },
         a: {
-          en: "Yes. Ceremony arches, drapery, and candle holders are rentals, often with a two-week minimum so the look is held for your date.",
-          fr: "Oui. Arches, voilages et bougeoirs se louent, souvent avec un minimum de deux semaines pour réserver le décor à votre date.",
+          en: "Yes. Ceremony arches, drapery, and candle holders are rentals. Book them 2 weeks ahead so the look is held for your date.",
+          fr: "Oui. Arches, voilages et bougeoirs se louent. Réservez-les 2 semaines à l’avance pour garder le décor à votre date.",
         },
       },
       {

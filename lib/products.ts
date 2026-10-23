@@ -5,6 +5,7 @@ import type {
   ProductVariant,
   VariantType,
 } from "@/lib/types";
+import { formatPrice } from "@/lib/format-price";
 
 const VENUE_PRODUCTS: Product[] = [
   {
@@ -17,8 +18,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 180,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "7-ft freestanding, 2-week minimum",
-          fr: "Autoportante 7 pi, minimum 2 semaines",
+          en: "7-ft freestanding · book 2 weeks ahead",
+          fr: "Autoportante 7 pi · réserver 2 semaines à l’avance",
         },
       },
     ],
@@ -36,8 +37,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 45,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "Vintage brass-gold taper holders · 2-week min",
-          fr: "Bougeoirs vintage laiton or · min. 2 semaines",
+          en: "Vintage brass-gold taper holders · book 2 weeks ahead",
+          fr: "Bougeoirs vintage laiton or · réserver 2 semaines à l’avance",
         },
       },
     ],
@@ -84,8 +85,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 75,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "Glowing LED card box · 2-week minimum",
-          fr: "Boîte LED lumineuse · minimum 2 semaines",
+          en: "Glowing LED card box · book 2 weeks ahead",
+          fr: "Boîte LED lumineuse · réserver 2 semaines à l’avance",
         },
       },
       {
@@ -144,8 +145,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 55,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "Clear 4-pillar pedestal · 2-week min",
-          fr: "Piédestal 4 piliers transparent · min. 2 semaines",
+          en: "Clear 4-pillar pedestal · book 2 weeks ahead",
+          fr: "Piédestal 4 piliers transparent · réserver 2 semaines à l’avance",
         },
       },
     ],
@@ -163,8 +164,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 70,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "Crystal-draped rose gold stand · 2-week min",
-          fr: "Support or rose drapé de cristaux · min. 2 semaines",
+          en: "Crystal-draped rose gold stand · book 2 weeks ahead",
+          fr: "Support or rose drapé de cristaux · réserver 2 semaines à l’avance",
         },
       },
     ],
@@ -195,8 +196,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 25,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "White-washed open wooden lantern · 2-week min",
-          fr: "Lanterne en bois blanchi · min. 2 semaines",
+          en: "White-washed open wooden lantern · book 2 weeks ahead",
+          fr: "Lanterne en bois blanchi · réserver 2 semaines à l’avance",
         },
       },
     ],
@@ -211,8 +212,8 @@ const VENUE_PRODUCTS: Product[] = [
         price: 25,
         unit: { en: "/ day", fr: "/ jour" },
         description: {
-          en: "Dark wood open lantern frame · 2-week min",
-          fr: "Lanterne en bois foncé · min. 2 semaines",
+          en: "Dark wood open lantern frame · book 2 weeks ahead",
+          fr: "Lanterne en bois foncé · réserver 2 semaines à l’avance",
         },
       },
     ],
@@ -854,6 +855,6 @@ export function displayLine(
   };
 }
 
-export function formatCad(amount: number) {
-  return `$${amount.toLocaleString("en-CA")}`;
+export function formatCad(amount: number, locale: Locale = "en") {
+  return formatPrice(amount, locale);
 }

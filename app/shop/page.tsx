@@ -40,14 +40,15 @@ export async function generateMetadata(): Promise<Metadata> {
       };
 }
 
-export default function Page() {
+export default async function Page({ searchParams }: PageProps<"/shop">) {
+  const { category } = await searchParams;
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogueJsonLd()) }}
       />
-      <ShopPage />
+      <ShopPage initialCategory={typeof category === "string" ? category : undefined} />
     </>
   );
 }

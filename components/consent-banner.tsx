@@ -25,13 +25,13 @@ export function ConsentBanner({ initialHidden }: { initialHidden: boolean }) {
       className="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-ivory px-6 py-4 shadow-[0_-8px_30px_rgba(6,45,57,0.08)]"
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-3xl font-body text-[13px] leading-relaxed text-ink/75">
+        <p className="max-w-3xl font-body text-[13px] leading-relaxed text-ink/80">
           {fr
             ? "Nous demandons votre consentement avant tout suivi non essentiel. Ce site n’utilise qu’un témoin essentiel pour retenir la langue, et aucun témoin publicitaire ou analytique."
             : "We ask for your consent before any non-essential tracking. This site uses only an essential cookie to remember your language, and no advertising or analytics cookies."}{" "}
           <Link
             href={localizedHref("/privacy", fr ? "fr" : "en")}
-            className="underline underline-offset-2 hover:text-ink"
+            className="py-3.5 underline underline-offset-2 hover:text-ink"
           >
             {fr ? "Confidentialité" : "Privacy"}
           </Link>
@@ -40,14 +40,14 @@ export function ConsentBanner({ initialHidden }: { initialHidden: boolean }) {
           <button
             type="button"
             onClick={() => choose("essential")}
-            className="font-body text-[13px] font-medium text-ink/70 underline-offset-2 hover:text-ink hover:underline"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full px-4 font-body text-[13px] font-medium text-ink ring-1 ring-ink/30 hover:ring-ink"
           >
             {fr ? "Refuser" : "Refuse"}
           </button>
           <button
             type="button"
             onClick={() => choose("all")}
-            className="rounded-full bg-ink px-4 py-2 font-body text-[13px] font-medium text-ivory"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-ink px-5 font-body text-[13px] font-medium text-ivory"
           >
             {fr ? "Accepter" : "Accept"}
           </button>

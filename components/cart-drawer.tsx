@@ -54,14 +54,14 @@ export function CartDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="font-body text-[13px] tracking-wide text-ink/60 hover:text-ink"
+            className="font-body text-[13px] tracking-wide text-ink/75 hover:text-ink"
           >
             {t(copy.cart.close, locale)}
           </button>
         </div>
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {cart.lines.length === 0 ? (
-            <p className="mt-8 text-center font-body text-[14px] text-ink/50">
+            <p className="mt-8 text-center font-body text-[14px] text-ink/75">
               {t(copy.cart.empty, locale)}
             </p>
           ) : (
@@ -81,9 +81,9 @@ export function CartDrawer({
                     <div className="flex-1">
                       <div className="flex justify-between font-body text-[14px] font-medium">
                         <span>{shown.name}</span>
-                        <span>{formatCad(line.price * line.quantity)}</span>
+                        <span>{formatCad(line.price * line.quantity, locale)}</span>
                       </div>
-                      <p className="font-body text-[12px] uppercase tracking-wide text-ink/45">
+                      <p className="font-body text-[12px] uppercase tracking-wide text-ink/75">
                         {shown.typeLabel} · {shown.unit}
                       </p>
                       <div className="mt-2 flex items-center gap-3">
@@ -113,7 +113,7 @@ export function CartDrawer({
                         <button
                           type="button"
                           onClick={() => cart.remove(line.id)}
-                          className="ml-auto font-body text-[12px] text-ink/45 hover:text-ink"
+                          className="ml-auto font-body text-[12px] text-ink/75 hover:text-ink"
                         >
                           {t(copy.cart.remove, locale)}
                         </button>
@@ -129,7 +129,7 @@ export function CartDrawer({
           <div className="border-t border-ink/10 px-6 py-5">
             <div className="flex justify-between font-body text-[15px] font-medium">
               <span>{t(copy.cart.estimated, locale)}</span>
-              <span>{formatCad(cart.subtotal)}</span>
+              <span>{formatCad(cart.subtotal, locale)}</span>
             </div>
             <CtaLink
               href="/quote"

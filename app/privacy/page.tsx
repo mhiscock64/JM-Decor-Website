@@ -35,7 +35,7 @@ export default async function Page() {
       <h1 className="mt-4 font-display text-5xl font-medium text-balance">
         {fr ? "Politique de confidentialité" : "Privacy policy"}
       </h1>
-      <p className="mt-4 font-body text-[13px] text-ink/50">
+      <p className="mt-4 font-body text-[13px] text-ink/75">
         {fr ? "En vigueur le 22 octobre 2026." : "Effective 22 October 2026."}{" "}
         <Link href={other} className="underline underline-offset-2 hover:text-ink">
           {fr ? "English" : "Français"}

@@ -4,12 +4,8 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
 import { useLanguage } from "@/lib/language";
-import {
-  categoryLabel,
-  formatCad,
-  localizeVariant,
-  productCategory,
-} from "@/lib/products";
+import { categoryLabel, localizeVariant, productCategory } from "@/lib/products";
+import { formatVariantPrice } from "@/lib/format-price";
 import type { Product, VariantType } from "@/lib/types";
 import { LightboxImage } from "@/components/lightbox-image";
 import { CtaButton } from "@/components/cta";
@@ -44,6 +40,7 @@ export function ProductCard({
         width={1024}
         height={1024}
         loading="lazy"
+        sizes="(min-width: 1280px) 290px, (min-width: 1024px) 22vw, (min-width: 640px) 45vw, 92vw"
         className="aspect-square w-full rounded-xl object-cover ring-1 ring-black/5"
       />
       <div className="mt-4 flex items-center justify-between">
@@ -59,15 +56,14 @@ export function ProductCard({
             : t(copy.shop.purchaseTag, locale)}
         </span>
         <span className="font-body text-[14px] font-medium">
-          {formatCad(variant.price)}
-          <span className="text-ink/40"> · {variant.unit[locale]}</span>
+          {formatVariantPrice(variant, locale)}
         </span>
       </div>
-      <p className="mt-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/40">
+      <p className="mt-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/75">
         {categoryLabel(productCategory(product), locale)}
       </p>
-      <h2 className="mt-1 font-display text-xl font-medium">{name}</h2>
-      <p className="mt-1 font-body text-[13px] text-ink/55">
+      <h3 className="mt-1 font-display text-xl font-medium">{name}</h3>
+      <p className="mt-1 font-body text-[13px] text-ink/75">
         {variant.description[locale]}
       </p>
       {product.variants.length > 1 ? (
@@ -82,10 +78,10 @@ export function ProductCard({
               type="button"
               aria-pressed={selected === item.type}
               onClick={() => setOverride(item.type)}
-              className={`rounded-full py-1.5 transition-colors ${
+              className={`min-h-[44px] rounded-full py-1.5 transition-colors ${
                 selected === item.type
                   ? "bg-ink text-ivory"
-                  : "text-ink/60 hover:text-ink"
+                  : "text-ink/75 hover:text-ink"
               }`}
             >
               {item.type === "rental"
