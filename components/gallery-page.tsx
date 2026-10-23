@@ -49,7 +49,7 @@ export function GalleryPage() {
           height={GALLERY_HERO.height}
           priority
           sizes="100vw"
-          className="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-[center_40%]"
         />
         <div
           aria-hidden="true"
