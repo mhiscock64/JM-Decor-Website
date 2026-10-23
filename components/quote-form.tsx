@@ -13,14 +13,20 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const fieldClass =
-  "mt-1.5 h-auto w-full rounded-none bg-cream/50 px-3 py-2.5 font-body text-[14px] text-ink shadow-none ring-1 ring-ink/10 placeholder:text-ink/30 focus-visible:border-transparent focus-visible:ring-1 focus-visible:ring-sage";
+  "mt-1.5 h-auto w-full rounded-none bg-cream/50 px-3 py-2.5 font-body text-[14px] text-ink shadow-none ring-1 ring-ink/10 placeholder:text-ink/70 focus-visible:border-transparent focus-visible:ring-1 focus-visible:ring-sage";
 
 const labelClass =
-  "font-body text-[12px] font-medium tracking-wide text-ink/60";
+  "font-body text-[12px] font-medium tracking-wide text-ink/75";
 
 type Captcha = { token: string; question: string };
 
-export function QuoteForm() {
+export function QuoteForm({
+  defaultDate,
+  defaultVenue,
+}: {
+  defaultDate?: string;
+  defaultVenue?: string;
+} = {}) {
   const cart = useCart();
   const { locale } = useLanguage();
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
@@ -113,14 +119,14 @@ export function QuoteForm() {
           <h1 className="mt-4 font-display text-5xl font-medium text-balance">
             {t(copy.quote.title, locale)}
           </h1>
-          <p className="mt-4 max-w-[44ch] font-body text-[15px] leading-relaxed text-pretty text-ink/65">
+          <p className="mt-4 max-w-[44ch] font-body text-[15px] leading-relaxed text-pretty text-ink/75">
             {t(copy.quote.lede, locale)}
           </p>
           <div className="mt-8 space-y-3 font-body text-[14px] text-ink/70">
             {cart.lines.length === 0 ? (
-              <p className="text-ink/40">
+              <p className="text-ink/75">
                 {t(copy.quote.emptyCart, locale)}{" "}
-                <Link href="/shop" className="text-sage underline">
+                <Link href={localizedHref("/shop", locale)} className="text-sage underline">
                   {t(copy.quote.browse, locale)}
                 </Link>
                 .
@@ -135,11 +141,11 @@ export function QuoteForm() {
                 >
                   <span>
                     {shown.name}{" "}
-                    <span className="text-ink/40">
+                    <span className="text-ink/75">
                       · {shown.typeLabel} × {line.quantity}
                     </span>
                   </span>
-                  <span>{formatCad(line.price * line.quantity)}</span>
+                  <span>{formatCad(line.price * line.quantity, locale)}</span>
                 </p>
                 );
               })
@@ -147,7 +153,7 @@ export function QuoteForm() {
             {cart.lines.length > 0 ? (
               <p className="flex justify-between pt-1 font-body text-[15px] font-medium">
                 <span>{t(copy.cart.estimated, locale)}</span>
-                <span>{formatCad(cart.subtotal)}</span>
+                <span>{formatCad(cart.subtotal, locale)}</span>
               </p>
             ) : null}
           </div>
@@ -157,7 +163,7 @@ export function QuoteForm() {
             <h2 className="font-display text-3xl font-medium">
               {t(copy.quote.thanks, locale)}
             </h2>
-            <p className="mt-3 max-w-sm font-body text-[15px] text-ink/65">
+            <p className="mt-3 max-w-sm font-body text-[15px] text-ink/75">
               {t(copy.quote.thanksLede, locale)}
             </p>
             <CtaButton
@@ -178,7 +184,7 @@ export function QuoteForm() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Label className={`flex-col items-stretch ${labelClass}`}>
                 {t(copy.quote.eventDate, locale)}
-                <Input type="date" name="eventDate" className={fieldClass} />
+                <Input type="date" name="eventDate" defaultValue={defaultDate} className={fieldClass} />
               </Label>
               <Label className={`flex-col items-stretch ${labelClass}`}>
                 {t(copy.quote.venue, locale)}
@@ -186,6 +192,7 @@ export function QuoteForm() {
                   type="text"
                   name="venue"
                   maxLength={120}
+                  defaultValue={defaultVenue}
                   placeholder={t(copy.quote.venuePlaceholder, locale)}
                   className={fieldClass}
                 />
@@ -257,7 +264,7 @@ export function QuoteForm() {
             {status === "error" ? (
               <p className="mt-4 font-body text-[13px] text-destructive">{error}</p>
             ) : null}
-            <p className="mt-4 font-body text-[12px] leading-relaxed text-ink/55">
+            <p className="mt-4 font-body text-[12px] leading-relaxed text-ink/75">
               {t(copy.quote.consent, locale)}{" "}
               <Link href={localizedHref("/privacy", locale)} className="underline underline-offset-2 hover:text-ink">
                 {t(copy.footer.privacy, locale)}
