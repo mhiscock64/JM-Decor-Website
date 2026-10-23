@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { InspirationCategory, InspirationItem } from "@/lib/inspiration";
 import type { Locale } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { FilterChips } from "@/components/filter-chips";
 
 type Filter = "all" | InspirationCategory;
 
@@ -60,25 +61,7 @@ export function InspirationWall({
             </h2>
             <p className="mt-2 font-body text-[15px] text-ink/75">{intro}</p>
           </div>
-          <ul className="flex flex-wrap gap-2" aria-label={filterLabel}>
-            {filters.map((item) => (
-              <li key={item.key}>
-                <button
-                  type="button"
-                  aria-pressed={filter === item.key}
-                  onClick={() => choose(item.key)}
-                  className={cn(
-                    "min-h-[44px] rounded-full border px-4 font-body text-[14px] transition",
-                    filter === item.key
-                      ? "border-ink bg-ink text-ivory"
-                      : "border-ink/30 hover:border-ink",
-                  )}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <FilterChips label={filterLabel} filters={filters} value={filter} onChange={choose} />
         </div>
         <p className="sr-only" aria-live="polite">
           {announce}

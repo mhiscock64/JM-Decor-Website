@@ -251,6 +251,10 @@ export const copy = {
     request: { en: "Request a quote", fr: "Demander une soumission" },
   },
   gallery: {
+    heroEyebrow: { en: "Recent weddings · Greater Montréal", fr: "Mariages récents · Grand Montréal" },
+    heroTitle: { en: "Our décor in pictures", fr: "Nos décors en images" },
+    viewWeddings: { en: "View the weddings", fr: "Voir les mariages" },
+    gridTitle: { en: "Inspiration", fr: "Inspirations" },
     kicker: { en: "Greater Montréal · Wedding decorations", fr: "Grand Montréal · Décorations de mariage" },
     title: { en: "Recent weddings", fr: "Mariages récents" },
     lede: {
@@ -342,6 +346,13 @@ export const copy = {
     },
     another: { en: "Submit another request", fr: "Envoyer une autre demande" },
     error: { en: "Something went wrong.", fr: "Une erreur s'est produite." },
+  },
+  lightbox: {
+    open: {
+      en: (alt: string) => `View larger image: ${alt}`,
+      fr: (alt: string) => `Voir l'image en plus grand : ${alt}`,
+    },
+    close: { en: "Close", fr: "Fermer" },
   },
   notFound: {
     title: { en: "Page not found", fr: "Page introuvable" },
