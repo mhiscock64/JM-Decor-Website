@@ -39,10 +39,11 @@ export const jsonLd = {
     {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#business`,
-      name: "JM Decor",
+      name: "Montreal Wedding Decorations",
+      alternateName: "Décorations de Mariage Montréal",
       url: SITE_URL,
       image: `${SITE_URL}/images/hero.jpg`,
-      logo: `${SITE_URL}/images/logo.png`,
+      logo: `${SITE_URL}/images/logo-en.png`,
       email: "bonjour@jmdecor.ca",
       description:
         "Wedding décor and decorations for Greater Montréal. Ceremony arches, drapery walls, candlelight, welcome signs, and favors, available to rent or purchase, with delivery and setup.",
@@ -91,7 +92,7 @@ export const jsonLd = {
           name: "Do you deliver wedding décor in Greater Montréal?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. JM Decor delivers and sets up wedding décor across the island of Montréal, Laval, the South Shore including Longueuil and Brossard, and the West Island.",
+            text: "Yes. We deliver and set up wedding décor across the island of Montréal, Laval, the South Shore including Longueuil and Brossard, and the West Island.",
           },
         },
         {
@@ -115,7 +116,7 @@ export const jsonLd = {
           name: "Is there online checkout?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "No. Build a list and request a quote. JM Decor replies with delivery and setup for your venue. There is no payment on the site.",
+            text: "No. Build a list and request a quote. We reply with delivery and setup for your venue. There is no payment on the site.",
           },
         },
       ],
@@ -127,7 +128,7 @@ export function catalogueJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "JM Decor wedding décor and decorations catalogue",
+    name: "Montreal Wedding Decorations catalogue",
     itemListOrder: "https://schema.org/ItemListOrderAscending",
     numberOfItems: PRODUCTS.length,
     itemListElement: PRODUCTS.map((product, index) => ({
@@ -140,7 +141,7 @@ export function catalogueJsonLd() {
         alternateName: product.name.fr,
         image: `${SITE_URL}${product.image}`,
         description: product.variants[0]?.description.en,
-        brand: { "@type": "Brand", name: "JM Decor" },
+        brand: { "@type": "Brand", name: "Montreal Wedding Decorations" },
         category: "Wedding décor",
         offers: product.variants.map((variant) => ({
           "@type": "Offer",

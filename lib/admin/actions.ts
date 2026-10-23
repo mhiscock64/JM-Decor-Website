@@ -17,7 +17,7 @@ export async function loginAction(formData: FormData) {
   if (!hasDatabase()) redirect("/admin/login?error=Database+is+not+configured");
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
-  const name = String(formData.get("name") ?? "JM Decor");
+  const name = String(formData.get("name") ?? "Montreal Wedding Decorations");
   const count = await staffCount();
   if (count === 0) {
     if (password.length < 8) redirect("/admin/login?error=Use+at+least+8+characters");

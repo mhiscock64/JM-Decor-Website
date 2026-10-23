@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
           "Louez ou achetez le décor de mariage au Grand Montréal : arches, voilages, bougeoirs, enseignes et faveurs. Livraison et installation.",
         alternates: { canonical: "/fr/shop", languages: langAlts("/shop", "/fr/shop") },
         openGraph: {
-          title: "Location de décor de mariage à Montréal · JM Decor",
+          title: "Location de décor de mariage à Montréal",
           description: "Arches, voilages, chandelles, enseignes et faveurs. Livraison dans le Grand Montréal.",
           url: "/fr/shop",
           locale: "fr_CA",
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
         ],
         alternates: { canonical: "/shop", languages: langAlts("/shop", "/fr/shop") },
         openGraph: {
-          title: "Wedding décor rentals & decorations in Montréal · JM Decor",
+          title: "Wedding décor rentals in Montréal",
           description: "Ceremony arches, drapery, candlelight, signs, and favors to rent or keep. Delivery across Greater Montréal.",
           url: "/shop",
         },

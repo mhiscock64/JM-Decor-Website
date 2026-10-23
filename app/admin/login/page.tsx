@@ -10,7 +10,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   const first = ready ? (await staffCount()) === 0 : false;
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-16">
-      <p className="font-body text-[12px] uppercase tracking-[0.28em] text-sage">JM Decor</p>
+      <p className="font-body text-[12px] uppercase tracking-[0.28em] text-sage">Montreal Wedding Decorations</p>
       <h1 className="mt-3 font-display text-4xl">Staff login</h1>
       <p className="mt-3 font-body text-[14px] leading-relaxed text-ink/65">
         {first
@@ -26,7 +26,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         {first ? (
           <label className="block font-body text-[13px]">
             Name
-            <input name="name" defaultValue="JM Decor" className="mt-1 w-full rounded-lg border border-ink/15 bg-ivory px-3 py-2" />
+            <input name="name" defaultValue="Montreal Wedding Decorations" className="mt-1 w-full rounded-lg border border-ink/15 bg-ivory px-3 py-2" />
           </label>
         ) : null}
         <label className="block font-body text-[13px]">

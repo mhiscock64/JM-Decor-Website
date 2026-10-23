@@ -53,8 +53,8 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
   return (
     <header className="border-b border-ink/10">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 sm:py-4">
-        <Link href={localizedHref("/", locale)} aria-label={copy.brand} className="shrink-0">
-          <BrandLogo priority />
+        <Link href={localizedHref("/", locale)} aria-label={t(copy.brand, locale)} className="shrink-0">
+          <BrandLogo priority locale={locale} />
         </Link>
         <nav className="hidden items-center gap-9 font-body text-[13px] font-medium tracking-wide text-ink/70 sm:flex">
           {links.map((link) => (

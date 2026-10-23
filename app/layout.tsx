@@ -18,7 +18,7 @@ const body = Inter({
   variable: "--font-inter",
 });
 
-const title = "Wedding Décor & Decorations in Greater Montréal | JM Decor";
+const title = "Montreal Wedding Decorations | Greater Montréal";
 const description =
   "Rent or buy wedding décor in Greater Montréal. Arches, drapery, candlelight, favors, and signs, with delivery and setup.";
 
@@ -26,12 +26,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: title,
-    template: "%s · JM Decor",
+    template: "%s",
   },
   description,
   keywords: AREA_KEYWORDS,
-  authors: [{ name: "JM Decor", url: SITE_URL }],
-  creator: "JM Decor",
+  authors: [{ name: "Montreal Wedding Decorations", url: SITE_URL }],
+  creator: "Montreal Wedding Decorations",
   alternates: {
     canonical: "/",
     languages: langAlts("/", "/fr"),
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description,
     type: "website",
     url: SITE_URL,
-    siteName: "JM Decor",
+    siteName: "Montreal Wedding Decorations",
     locale: "en_CA",
     alternateLocale: ["fr_CA"],
     images: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: "/images/hero.jpg",
         width: 1440,
         height: 1120,
-        alt: "Ivory floral wedding arch and candlelit table by JM Decor in Montréal",
+        alt: "Ivory floral wedding arch and candlelit table in Montréal",
       },
     ],
   },

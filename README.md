@@ -1,4 +1,4 @@
-# JM Decor
+# Montreal Wedding Decorations
 
 A recreation of the [Montréal wedding décor site](https://montreal-wedding-dream.lovable.app/): a bilingual studio for arches, candlelight, drapery, and rental pieces.
 

@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
         languages: langAlts("/wedding-decor-montreal", "/fr/wedding-decor-montreal"),
       },
       openGraph: {
-        title: "Décoration de mariage au Grand Montréal · JM Decor",
+        title: "Décoration de mariage au Grand Montréal",
         url: "/fr/wedding-decor-montreal",
         locale: "fr_CA",
       },
@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
       languages: langAlts("/wedding-decor-montreal", "/fr/wedding-decor-montreal"),
     },
     openGraph: {
-      title: `${title} · JM Decor`,
+      title: title,
       description,
       url: "/wedding-decor-montreal",
       locale: "en_CA",
@@ -79,7 +79,7 @@ export default async function Page() {
           : "Wedding décor and decorations for Greater Montréal"}
       </h1>
       <p className="mt-6 font-body text-[16px] leading-relaxed text-ink/70">
-        JM Decor dresses weddings on the island and across the greater area. Rent a ceremony arch,
+        Montreal Wedding Decorations dresses weddings on the island and across the greater area. Rent a ceremony arch,
         drapery wall, or candlelit table look for the weekend, or buy the signs, card boxes, and
         favors you want to keep. There is no checkout on the site: build a list and request a quote
         with delivery and setup for your venue.
@@ -125,7 +125,7 @@ export default async function Page() {
 
       <h2 className="mt-16 font-display text-3xl font-medium">Décoration de mariage au Grand Montréal</h2>
       <p className="mt-4 font-body text-[15px] leading-relaxed text-ink/70">
-        JM Decor livre et installe le décor de mariage à Montréal, à Laval, sur la Rive-Sud
+        Nous livrons et installons le décor de mariage à Montréal, à Laval, sur la Rive-Sud
         (Longueuil, Brossard, Saint-Lambert, Boucherville) et dans l'Ouest-de-l'Île.
         Location d'arches de cérémonie, de voilages et de chandelles, ou achat d'enseignes,
         de boîtes à cartes et de faveurs. Pas de paiement en ligne : demandez une soumission et nous

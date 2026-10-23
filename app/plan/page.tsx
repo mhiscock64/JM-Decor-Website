@@ -9,14 +9,14 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
       title: "Préparer ma journée",
       description:
-        "Préparez le décor de votre mariage au Grand Montréal. JM Decor propose des pièces à louer ou à acheter, puis une soumission avec livraison et installation.",
+        "Préparez le décor de votre mariage au Grand Montréal. Nous proposons des pièces à louer ou à acheter, puis une soumission avec livraison et installation.",
       alternates: { canonical: "/fr/plan", languages: langAlts("/plan", "/fr/plan") },
     };
   }
   return {
     title: "Plan my day",
     description:
-      "Plan wedding décor in Greater Montréal. JM Decor suggests pieces to rent or buy, then you request a quote with delivery and setup.",
+      "Plan wedding décor in Greater Montréal. We suggest pieces to rent or buy, then you request a quote with delivery and setup.",
     alternates: { canonical: "/plan", languages: langAlts("/plan", "/fr/plan") },
   };
 }

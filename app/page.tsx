@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (fr) {
     return {
       title: {
-        absolute: "Décor de mariage au Grand Montréal | JM Decor",
+        absolute: "Décorations de Mariage Montréal",
       },
       description:
         "Louez ou achetez le décor de mariage au Grand Montréal : arches, voilages et chandelles, ou faveurs et enseignes. Livraison et installation.",
@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
         languages: langAlts("/", "/fr"),
       },
       openGraph: {
-        title: "Décor de mariage au Grand Montréal | JM Decor",
+        title: "Décorations de Mariage Montréal",
         description:
           "Location ou achat d'arches, de voilages et de chandelles. Livraison et installation à Montréal, Laval, sur la Rive-Sud et dans l'Ouest-de-l'Île.",
         url: "/fr",

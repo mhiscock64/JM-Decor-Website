@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/types";
 
 export const copy = {
-  brand: "JM Decor",
+  brand: { en: "Montreal Wedding Decorations", fr: "Décorations de Mariage Montréal" },
   email: "bonjour@jmdecor.ca",
   city: { en: "Montréal, Quebec", fr: "Montréal, Québec" },
   nav: {
@@ -85,8 +85,8 @@ export const copy = {
     glimpse: { en: "A glimpse of recent weddings", fr: "Un aperçu de mariages récents" },
     fullGallery: { en: "See the full gallery →", fr: "Voir toute la galerie →" },
     galleryAlt: {
-      en: "Wedding décor by JM Decor in Montréal",
-      fr: "Décor de mariage par JM Decor à Montréal",
+      en: "Wedding décor styled in Montréal",
+      fr: "Décor de mariage à Montréal",
     },
     areaKicker: { en: "Greater Montréal", fr: "Grand Montréal" },
     areaTitle: {
@@ -94,8 +94,8 @@ export const copy = {
       fr: "Décor et décorations de mariage, livrés à votre lieu",
     },
     areaLede: {
-      en: "JM Decor styles ceremonies and receptions on the island of Montréal and across the greater area: Laval, the South Shore, and the West Island. Tell us the venue and we will quote delivery and setup.",
-      fr: "JM Decor habille cérémonies et réceptions sur l'île de Montréal et dans le Grand Montréal : Laval, la Rive-Sud et l'Ouest-de-l'Île. Indiquez le lieu et nous soumissionnons la livraison et l'installation.",
+      en: "Montreal Wedding Decorations styles ceremonies and receptions on the island of Montréal and across the greater area: Laval, the South Shore, and the West Island. Tell us the venue and we will quote delivery and setup.",
+      fr: "Nous habillons les cérémonies et les réceptions sur l'île de Montréal et dans le Grand Montréal : Laval, la Rive-Sud et l'Ouest-de-l'Île. Indiquez le lieu et nous soumissionnons la livraison et l'installation.",
     },
     areaMore: {
       en: "Wedding décor across Greater Montréal →",

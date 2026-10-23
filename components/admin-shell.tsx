@@ -28,7 +28,7 @@ export function AdminShell({ staff, unread = 0, children }: { staff: Staff; unre
   const sidebar = (
     <aside className="flex h-full w-60 shrink-0 flex-col bg-[oklch(27%_0.035_258)] text-ivory">
       <div className="flex items-center justify-between px-5 py-5">
-        <Link href="/admin" className="font-display text-2xl tracking-wide" onClick={() => setOpen(false)}>JM Decor</Link>
+        <Link href="/admin" className="font-display text-2xl tracking-wide" onClick={() => setOpen(false)}>Montreal Wedding Decorations</Link>
         <button type="button" className="lg:hidden" onClick={() => setOpen(false)} aria-label="Close menu"><X className="size-5" /></button>
       </div>
       <nav className="flex-1 space-y-6 overflow-y-auto px-3 pb-6">
@@ -73,7 +73,7 @@ export function AdminShell({ staff, unread = 0, children }: { staff: Staff; unre
         <div className="min-w-0 flex-1">
           <header className="flex items-center justify-between border-b border-[oklch(90%_0.01_255)] bg-white px-4 py-3 lg:px-8">
             <button type="button" className="grid size-11 place-items-center lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu"><Menu className="size-5" /></button>
-            <p className="font-body text-sm text-[oklch(50%_0.02_258)]">JM Decor Admin</p>
+            <p className="font-body text-sm text-[oklch(50%_0.02_258)]">Montreal Wedding Decorations</p>
             <Link href="/" className="font-body text-sm text-[oklch(55%_0.13_255)] hover:underline">View site</Link>
           </header>
           <div className="px-4 py-6 lg:px-8">{children}</div>

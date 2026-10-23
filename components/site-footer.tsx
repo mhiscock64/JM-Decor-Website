@@ -24,7 +24,7 @@ export function SiteFooter() {
     <footer className="border-t border-ink/10">
       <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <BrandLogo className="h-16" />
+          <BrandLogo locale={locale} className="h-14 sm:h-16" />
           <p className="mt-4 max-w-sm font-body text-[13px] leading-relaxed text-ink/60">
             {t(copy.footer.blurb, locale)}
           </p>
