@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { HomePage } from "@/components/home-page";
+import { langAlts } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const fr = (await headers()).get("x-jm-locale") === "fr";
   if (fr) {
     return {
       title: {
-        absolute: "Décor et décorations de mariage au Grand Montréal | JM Decor",
+        absolute: "Décor de mariage au Grand Montréal | JM Decor",
       },
       description:
-        "Décor et décorations de mariage au Grand Montréal. Location d'arches, de voilages et de chandelles, ou achat de faveurs et d'enseignes. Livraison et installation à Montréal, Laval, sur la Rive-Sud et dans l'Ouest-de-l'Île.",
+        "Louez ou achetez le décor de mariage au Grand Montréal : arches, voilages et chandelles, ou faveurs et enseignes. Livraison et installation.",
       alternates: {
         canonical: "/fr",
-        languages: { "en-CA": "/", "fr-CA": "/fr" },
+        languages: langAlts("/", "/fr"),
       },
       openGraph: {
-        title: "Décor et décorations de mariage au Grand Montréal | JM Decor",
+        title: "Décor de mariage au Grand Montréal | JM Decor",
         description:
-          "Arches de cérémonie, voilages, chandelles et faveurs. Livraison à Montréal, Laval, Longueuil, Brossard et dans l'Ouest-de-l'Île.",
+          "Location ou achat d'arches, de voilages et de chandelles. Livraison et installation à Montréal, Laval, sur la Rive-Sud et dans l'Ouest-de-l'Île.",
         url: "/fr",
         locale: "fr_CA",
       },
@@ -27,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     alternates: {
       canonical: "/",
-      languages: { "en-CA": "/", "fr-CA": "/fr" },
+      languages: langAlts("/", "/fr"),
     },
   };
 }

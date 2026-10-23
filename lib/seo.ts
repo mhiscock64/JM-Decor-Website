@@ -1,6 +1,10 @@
 import { PRODUCTS } from "@/lib/products";
 
-export const SITE_URL = "https://jm-decor-website.vercel.app";
+export const SITE_URL = "https://www.montrealweddingdecorations.com";
+
+export function langAlts(en: string, fr: string) {
+  return { "en-CA": en, "fr-CA": fr, "x-default": en };
+}
 
 export const AREA_KEYWORDS = [
   "wedding decor Montreal",
@@ -144,6 +148,10 @@ export function catalogueJsonLd() {
           price: variant.price,
           availability: "https://schema.org/InStock",
           url: `${SITE_URL}/quote`,
+          description:
+            variant.type === "rental"
+              ? "Rental price. Request a quote for delivery and setup. No online checkout."
+              : "Purchase price. Request a quote. No online checkout.",
           businessFunction:
             variant.type === "rental"
               ? "http://purl.org/goodrelations/v1#LeaseOut"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { GalleryPage } from "@/components/gallery-page";
+import { langAlts } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const fr = (await headers()).get("x-jm-locale") === "fr";
@@ -8,15 +9,15 @@ export async function generateMetadata(): Promise<Metadata> {
     ? {
         title: "Galerie de décor de mariage",
         description:
-          "Décorations de mariage récentes par JM Decor à Montréal : cérémonies de jardin, salles aux chandelles, réceptions du Vieux-Montréal et showers.",
-        alternates: { canonical: "/fr/gallery", languages: { "en-CA": "/gallery", "fr-CA": "/fr/gallery" } },
+          "Décor de mariage récent au Grand Montréal : jardins, salles aux chandelles, Vieux-Montréal et showers. Pièces à louer ou à acheter.",
+        alternates: { canonical: "/fr/gallery", languages: langAlts("/gallery", "/fr/gallery") },
         openGraph: { title: "Galerie décor de mariage · JM Decor Montréal", url: "/fr/gallery", locale: "fr_CA" },
       }
     : {
         title: "Wedding décor gallery",
         description:
-          "Recent wedding decorations by JM Decor in Montréal: garden ceremonies, candlelit ballrooms, Vieux-Montréal receptions, and bridal showers.",
-        alternates: { canonical: "/gallery", languages: { "en-CA": "/gallery", "fr-CA": "/fr/gallery" } },
+          "Recent wedding décor in Greater Montréal: garden ceremonies, candlelit rooms, and bridal showers. Pieces you can rent or buy.",
+        alternates: { canonical: "/gallery", languages: langAlts("/gallery", "/fr/gallery") },
         openGraph: {
           title: "Wedding décor gallery · JM Decor Montréal",
           description: "Garden ceremonies, candlelit ballrooms, and bridal shower decorations styled across Greater Montréal.",

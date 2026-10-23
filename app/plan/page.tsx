@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { PlanPage } from "@/components/plan-page";
+import { langAlts } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await headers()).get("x-jm-locale") === "fr" ? "fr" : "en";
   if (locale === "fr") {
     return {
       title: "Préparer ma journée",
-      description: "Quelques questions sur votre mariage à Montréal et JM Decor propose un décor du catalogue. Demandez ensuite une soumission. Aucun paiement.",
-      alternates: { canonical: "/fr/plan", languages: { "en-CA": "/plan", "fr-CA": "/fr/plan" } },
+      description:
+        "Préparez le décor de votre mariage au Grand Montréal. JM Decor propose des pièces à louer ou à acheter, puis une soumission avec livraison et installation.",
+      alternates: { canonical: "/fr/plan", languages: langAlts("/plan", "/fr/plan") },
     };
   }
   return {
     title: "Plan my day",
-    description: "Answer a few questions about your Montréal wedding and JM Decor will suggest décor from the catalogue — then request a quote. No payment.",
-    alternates: { canonical: "/plan", languages: { "en-CA": "/plan", "fr-CA": "/fr/plan" } },
+    description:
+      "Plan wedding décor in Greater Montréal. JM Decor suggests pieces to rent or buy, then you request a quote with delivery and setup.",
+    alternates: { canonical: "/plan", languages: langAlts("/plan", "/fr/plan") },
   };
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
-import { AREA_KEYWORDS, jsonLd, SITE_URL } from "@/lib/seo";
+import { AREA_KEYWORDS, jsonLd, langAlts, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -20,7 +20,7 @@ const body = Inter({
 
 const title = "Wedding Décor & Decorations in Greater Montréal | JM Decor";
 const description =
-  "Wedding décor and decorations in Greater Montréal. Rent ceremony arches, drapery, and candlelight, or buy favors and signs. Delivery and setup across the island, Laval, the South Shore, and the West Island.";
+  "Rent or buy wedding décor in Greater Montréal. Arches, drapery, candlelight, favors, and signs, with delivery and setup.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   creator: "JM Decor",
   alternates: {
     canonical: "/",
-    languages: { "en-CA": "/", "fr-CA": "/fr" },
+    languages: langAlts("/", "/fr"),
   },
   openGraph: {
     title,

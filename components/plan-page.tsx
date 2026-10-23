@@ -133,7 +133,7 @@ export function PlanPage() {
               <p className="font-body text-[14px] leading-relaxed text-ink/70">{lookSummary(plan, locale)}</p>
               {lines.map((line) => (
                 <div key={line.id} className="flex gap-3">
-                  <img src={line.image} alt="" className="size-16 rounded-lg object-cover" />
+                  <img src={line.image} alt={line.name} className="size-16 rounded-lg object-cover" />
                   <div>
                     <p className="font-body text-[14px] font-medium">{line.name}</p>
                     <p className="font-body text-[12px] text-ink/45">{line.description} · {formatCad(line.price)}</p>

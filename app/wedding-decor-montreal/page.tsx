@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
-import { AREA_KEYWORDS, SITE_URL } from "@/lib/seo";
+import { AREA_KEYWORDS, langAlts, SITE_URL } from "@/lib/seo";
 
 const title = "Wedding décor & decorations in Greater Montréal";
 const description =
-  "JM Decor rents and sells wedding décor across Greater Montréal: ceremony arches, drapery, candlelight, table decorations, welcome signs, and favors. Delivery and setup in Montréal, Laval, the South Shore, and the West Island.";
+  "Rent or buy wedding décor across Greater Montréal: arches, drapery, candlelight, signs, and favors, with delivery and setup.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const fr = (await headers()).get("x-jm-locale") === "fr";
@@ -13,11 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
     return {
       title: "Décoration de mariage au Grand Montréal",
       description:
-        "Location et vente de décoration de mariage au Grand Montréal : arches, voilages, chandelles, décor de table et faveurs. Livraison à Montréal, Laval, Longueuil, Brossard et dans l'Ouest-de-l'Île.",
+        "Location ou achat de décoration de mariage au Grand Montréal : arches, voilages, chandelles et faveurs. Livraison et installation.",
       keywords: AREA_KEYWORDS,
       alternates: {
         canonical: "/fr/wedding-decor-montreal",
-        languages: { "en-CA": "/wedding-decor-montreal", "fr-CA": "/fr/wedding-decor-montreal" },
+        languages: langAlts("/wedding-decor-montreal", "/fr/wedding-decor-montreal"),
       },
       openGraph: {
         title: "Décoration de mariage au Grand Montréal · JM Decor",
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: AREA_KEYWORDS,
     alternates: {
       canonical: "/wedding-decor-montreal",
-      languages: { "en-CA": "/wedding-decor-montreal", "fr-CA": "/fr/wedding-decor-montreal" },
+      languages: langAlts("/wedding-decor-montreal", "/fr/wedding-decor-montreal"),
     },
     openGraph: {
       title: `${title} · JM Decor`,
@@ -52,7 +52,10 @@ const areas = [
   ["Westmount, Outremont, Plateau", "Townhouses and smaller rooms where candlelight and a single arch do the work."],
 ];
 
-export default function Page() {
+export default async function Page() {
+  const fr = (await headers()).get("x-jm-locale") === "fr";
+  const shopHref = fr ? "/fr/shop" : "/shop";
+  const quoteHref = fr ? "/fr/quote" : "/quote";
   const serviceLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -71,7 +74,9 @@ export default function Page() {
         Greater Montréal · Grand Montréal
       </p>
       <h1 className="mt-4 font-display text-5xl font-medium text-balance">
-        Wedding décor and decorations for Greater Montréal
+        {fr
+          ? "Décoration de mariage pour le Grand Montréal"
+          : "Wedding décor and decorations for Greater Montréal"}
       </h1>
       <p className="mt-6 font-body text-[16px] leading-relaxed text-ink/70">
         JM Decor dresses weddings on the island and across the greater area. Rent a ceremony arch,
@@ -80,11 +85,11 @@ export default function Page() {
         with delivery and setup for your venue.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
-        <Link href="/shop" className="bg-ink px-4 py-2 font-body text-[13px] font-medium text-ivory">
-          Browse the catalogue
+        <Link href={shopHref} className="bg-ink px-4 py-2 font-body text-[13px] font-medium text-ivory">
+          {fr ? "Voir le catalogue" : "Browse the catalogue"}
         </Link>
-        <Link href="/quote" className="px-4 py-2 font-body text-[13px] font-medium text-ink ring-1 ring-ink/15">
-          Request a quote
+        <Link href={quoteHref} className="px-4 py-2 font-body text-[13px] font-medium text-ink ring-1 ring-ink/15">
+          {fr ? "Demander une soumission" : "Request a quote"}
         </Link>
       </div>
 
