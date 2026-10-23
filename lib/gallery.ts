@@ -18,12 +18,12 @@ function photo(item: Omit<GalleryPhoto, "category"> & { category?: InspirationCa
 }
 
 export const GALLERY_HERO = {
-  src: "/images/gallery-evening-drape.jpg",
-  width: 768,
-  height: 1152,
+  src: "/images/hero.jpg",
+  width: 3456,
+  height: 2304,
   alt: {
-    en: "White drapery and string lights over a candlelit evening reception table",
-    fr: "Voilages blancs et guirlandes lumineuses au-dessus d'une table de réception aux chandelles, en soirée",
+    en: "Ivory floral arch over a sunlit sweetheart table",
+    fr: "Arche florale ivoire au-dessus d'une table d'honneur ensoleillée",
   },
 } as const;
 
@@ -117,6 +117,9 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     height: 1152,
     category: "reception",
     caption: { en: "Evening drapery and string lights", fr: "Voilage du soir et guirlandes" },
-    alt: GALLERY_HERO.alt,
+    alt: {
+      en: "White drapery and string lights over a candlelit evening reception table",
+      fr: "Voilages blancs et guirlandes lumineuses au-dessus d'une table de réception aux chandelles, en soirée",
+    },
   }),
 ];

@@ -80,7 +80,7 @@ export function HomePage() {
           </>
         }
         lede={t(copy.home.heroLede, locale)}
-        image={{ src: HERO.src, alt: HERO.alt[locale], width: 1440, height: 1120 }}
+        image={{ src: HERO.src, alt: HERO.alt[locale], width: 3456, height: 2304 }}
         primaryCta={{ href: quoteHref, label: t(copy.home.request, locale) }}
         secondaryCta={{ href: localizedHref("/shop", locale), label: t(copy.home.browse, locale) }}
       />

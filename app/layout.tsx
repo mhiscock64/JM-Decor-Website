@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/hero.jpg",
-        width: 1440,
-        height: 1120,
+        width: 3456,
+        height: 2304,
         alt: "Ivory floral wedding arch and candlelit table in Montréal",
       },
     ],
