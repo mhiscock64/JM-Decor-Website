@@ -100,7 +100,7 @@ export const jsonLd = {
           name: "Can I rent a wedding arch or backdrop in Montréal?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Ceremony arches, drapery walls, candle holders, and floral arrangements are available to rent. Many rentals have a two-week minimum.",
+            text: "Yes. Ceremony arches, drapery walls, candle holders, and floral arrangements are available to rent. Book many rentals at least two weeks ahead so they are held for your date.",
           },
         },
         {

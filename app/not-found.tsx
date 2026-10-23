@@ -12,7 +12,7 @@ export default function NotFound() {
       <h1 className="mt-4 font-display text-3xl font-medium">
         {t(copy.notFound.title, locale)}
       </h1>
-      <p className="mt-3 font-body text-[15px] text-ink/65">
+      <p className="mt-3 font-body text-[15px] text-ink/75">
         {t(copy.notFound.lede, locale)}
       </p>
       <Link

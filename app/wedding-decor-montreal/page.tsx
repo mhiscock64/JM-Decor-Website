@@ -126,10 +126,10 @@ export default async function Page() {
       <h2 className="mt-16 font-display text-3xl font-medium">Décoration de mariage au Grand Montréal</h2>
       <p className="mt-4 font-body text-[15px] leading-relaxed text-ink/70">
         Nous livrons et installons le décor de mariage à Montréal, à Laval, sur la Rive-Sud
-        (Longueuil, Brossard, Saint-Lambert, Boucherville) et dans l'Ouest-de-l'Île.
-        Location d'arches de cérémonie, de voilages et de chandelles, ou achat d'enseignes,
+        (Longueuil, Brossard, Saint-Lambert, Boucherville) et dans l’Ouest-de-l’Île.
+        Location d’arches de cérémonie, de voilages et de chandelles, ou achat d’enseignes,
         de boîtes à cartes et de faveurs. Pas de paiement en ligne : demandez une soumission et nous
-        confirmons les pièces, la livraison et l'installation.
+        confirmons les pièces, la livraison et l’installation.
       </p>
       <p className="mt-4 font-body text-[15px] leading-relaxed text-ink/70">
         <Link href={fr ? "/en" : "/"} className="text-sage underline-offset-4 hover:underline">
