@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PAGES = new Set(["", "shop", "gallery", "quote", "plan", "wedding-decor-montreal"]);
+const PAGES = new Set(["", "shop", "gallery", "quote", "plan", "wedding-decor-montreal", "privacy"]);
 const CANONICAL_ORIGIN = "https://www.montrealweddingdecorations.com";
 const REDIRECT_HOSTS = new Set(["jm-decor-website.vercel.app", "montrealweddingdecorations.com"]);
 

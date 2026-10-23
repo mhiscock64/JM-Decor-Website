@@ -256,6 +256,12 @@ export function QuoteForm() {
             {status === "error" ? (
               <p className="mt-4 font-body text-[13px] text-destructive">{error}</p>
             ) : null}
+            <p className="mt-4 font-body text-[12px] leading-relaxed text-ink/55">
+              {t(copy.quote.consent, locale)}{" "}
+              <Link href={locale === "fr" ? "/fr/privacy" : "/privacy"} className="underline underline-offset-2 hover:text-ink">
+                {t(copy.footer.privacy, locale)}
+              </Link>
+            </p>
             <CtaButton
               type="submit"
               disabled={status === "sending" || !captcha}

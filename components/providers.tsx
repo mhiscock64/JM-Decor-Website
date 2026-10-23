@@ -7,9 +7,10 @@ import { SiteHeader } from "@/components/site-header";
 import { CartDrawer } from "@/components/cart-drawer";
 import { CartProvider } from "@/lib/cart";
 import { LanguageProvider } from "@/lib/language";
+import { ConsentBanner } from "@/components/consent-banner";
 import type { Locale } from "@/lib/types";
 
-function Shell({ children }: { children: React.ReactNode }) {
+function Shell({ children, consentSet }: { children: React.ReactNode; consentSet: boolean }) {
   const [cartOpen, setCartOpen] = useState(false);
   const pathname = usePathname();
   if (pathname.startsWith("/admin")) return children;
@@ -19,6 +20,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      <ConsentBanner initialHidden={consentSet} />
     </div>
   );
 }
@@ -26,14 +28,16 @@ function Shell({ children }: { children: React.ReactNode }) {
 export function Providers({
   children,
   initialLocale = "en",
+  consentSet = false,
 }: {
   children: React.ReactNode;
   initialLocale?: Locale;
+  consentSet?: boolean;
 }) {
   return (
     <LanguageProvider initialLocale={initialLocale}>
       <CartProvider>
-        <Shell>{children}</Shell>
+        <Shell consentSet={consentSet}>{children}</Shell>
       </CartProvider>
     </LanguageProvider>
   );

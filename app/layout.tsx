@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { AREA_KEYWORDS, jsonLd, langAlts, SITE_URL } from "@/lib/seo";
@@ -74,6 +74,8 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = (await headers()).get("x-jm-locale") === "fr" ? "fr" : "en";
+  const consent = (await cookies()).get("jm-consent")?.value;
+  const consentSet = consent === "essential" || consent === "all";
   return (
     <html lang={locale} className={`${display.variable} ${body.variable} h-full`}>
       <body className="min-h-full bg-ivory font-body text-ink antialiased">
@@ -81,7 +83,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Providers initialLocale={locale}>{children}</Providers>
+        <Providers initialLocale={locale} consentSet={consentSet}>{children}</Providers>
       </body>
     </html>
   );

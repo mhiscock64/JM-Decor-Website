@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { copy, t } from "@/lib/i18n";
@@ -26,15 +26,8 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
   const { locale, setLocale } = useLanguage();
   const { count } = useCart();
   const pathname = usePathname();
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const bare = pathname.replace(/^\/fr/, "") || "/";
-
-  function switchLanguage() {
-    const next = locale === "en" ? "fr" : "en";
-    setLocale(next);
-    router.push(localizedHref(bare === "" ? "/" : bare, next));
-  }
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -82,26 +75,27 @@ export function SiteHeader({ onCartClick }: { onCartClick: () => void }) {
           >
             <Menu className="size-4" />
           </Button>
-          <button
-            type="button"
-            onClick={switchLanguage}
-            className="font-body text-[13px] font-medium tracking-wide text-ink/70"
-            aria-label={t(copy.nav.language, locale)}
-          >
-            {locale === "en" ? (
-              <>
-                <span className="text-ink">EN</span>
-                {" / "}
-                <span>FR</span>
-              </>
-            ) : (
-              <>
-                <span>EN</span>
-                {" / "}
-                <span className="text-ink">FR</span>
-              </>
-            )}
-          </button>
+          <nav aria-label={locale === "fr" ? "Langue" : "Language"} className="flex shrink-0 items-center gap-1.5 whitespace-nowrap font-body text-[12px] font-medium tracking-wide sm:text-[13px]">
+            <Link
+              href={localizedHref(bare === "" ? "/" : bare, "en")}
+              hrefLang="en-CA"
+              lang="en"
+              onClick={() => setLocale("en")}
+              className={locale === "en" ? "text-ink" : "text-ink/50 hover:text-ink"}
+            >
+              English
+            </Link>
+            <span aria-hidden="true" className="text-ink/30">/</span>
+            <Link
+              href={localizedHref(bare === "" ? "/" : bare, "fr")}
+              hrefLang="fr-CA"
+              lang="fr"
+              onClick={() => setLocale("fr")}
+              className={locale === "fr" ? "text-ink" : "text-ink/50 hover:text-ink"}
+            >
+              Français
+            </Link>
+          </nav>
           <button
             type="button"
             onClick={onCartClick}

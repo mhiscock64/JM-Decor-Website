@@ -30,6 +30,7 @@ export const copy = {
       en: "Montréal, Laval, Longueuil, Brossard, the South Shore, the West Island, Westmount, Outremont, and Vieux-Montréal.",
       fr: "Montréal, Laval, Longueuil, Brossard, la Rive-Sud, l'Ouest-de-l'Île, Westmount, Outremont et le Vieux-Montréal.",
     },
+    privacy: { en: "Privacy", fr: "Confidentialité" },
   },
   plan: {
     kicker: { en: "Plan my day", fr: "Préparer ma journée" },
@@ -261,6 +262,10 @@ export const copy = {
       fr: "Couleurs, nombre d'invités, horaire d'installation…",
     },
     submit: { en: "Request my quote", fr: "Envoyer ma demande" },
+    consent: {
+      en: "By sending this request, you agree we use these details only to prepare your quote. See the privacy policy.",
+      fr: "En envoyant cette demande, vous acceptez que nous utilisions ces renseignements uniquement pour préparer votre soumission. Voir la politique de confidentialité.",
+    },
     sending: { en: "Sending…", fr: "Envoi…" },
     thanks: { en: "Thank you", fr: "Merci" },
     thanksLede: {

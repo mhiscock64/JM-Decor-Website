@@ -8,6 +8,7 @@ const paths: { path: string; priority: number; frPriority: number; changeFrequen
   { path: "/gallery", priority: 0.7, frPriority: 0.6, changeFrequency: "monthly" },
   { path: "/quote", priority: 0.7, frPriority: 0.6, changeFrequency: "monthly" },
   { path: "/plan", priority: 0.7, frPriority: 0.6, changeFrequency: "monthly" },
+  { path: "/privacy", priority: 0.3, frPriority: 0.3, changeFrequency: "monthly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
